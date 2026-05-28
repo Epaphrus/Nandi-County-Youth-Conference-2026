@@ -6,16 +6,16 @@
 /* ── CSS Variables ─────────────────────────────────────────── */
 :root {
   /* Brand Colors */
-  --blue:       #102B52;
-  --blue-light: #1a3d6e;
-  --blue-dark:  #0b1e3a;
-  --red:        #C62828;
-  --red-hover:  #a81f1f;
+  --blue:       #0000FF;
+  --blue-light: #3333FF;
+  --blue-dark:  #0000CC;
+  --red:        #FF0000;
+  --red-hover:  #CC0000;
   --white:      #FFFFFF;
   --black:      #111111;
-  --gray:       #F5F5F5;
-  --gray-mid:   #E0E0E0;
-  --gray-text:  #555555;
+  --gray:       #EEF2FF;
+  --gray-mid:   #C8C8FF;
+  --gray-text:  #00008B;
 
   /* Typography */
   --font-heading: 'Lato', system-ui, sans-serif;

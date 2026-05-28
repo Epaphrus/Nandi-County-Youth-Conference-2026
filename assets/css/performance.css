@@ -5,11 +5,11 @@
 
 /* Force swap on Google Font faces to eliminate FOIT */
 @font-face {
-  font-family: 'Cinzel';
+  font-family: 'Lato';
   font-display: swap;
 }
 @font-face {
-  font-family: 'Inter';
+  font-family: 'Open Sans';
   font-display: swap;
 }
 

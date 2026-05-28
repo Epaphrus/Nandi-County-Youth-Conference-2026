@@ -18,8 +18,8 @@
   --gray-text:  #555555;
 
   /* Typography */
-  --font-heading: 'Cinzel', 'Playfair Display', Georgia, serif;
-  --font-body:    'Inter', 'Poppins', 'Open Sans', system-ui, sans-serif;
+  --font-heading: 'Lato', system-ui, sans-serif;
+  --font-body:    'Open Sans', system-ui, sans-serif;
 
   /* Font Sizes – fluid scale */
   --fs-xs:   0.75rem;

@@ -28,13 +28,13 @@
 
 .day-tab:hover {
   border-color: var(--blue);
-  background: rgba(16,43,82,0.04);
+  background: rgba(0,0,255,0.04);
 }
 
 .day-tab.active {
   background: var(--blue);
   border-color: var(--blue);
-  box-shadow: 0 4px 16px rgba(16,43,82,0.3);
+  box-shadow: 0 4px 16px rgba(0,0,255,0.25);
 }
 
 .tab-day {

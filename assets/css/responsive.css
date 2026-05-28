@@ -197,7 +197,7 @@ p a, li a, .footer-links a, .ann-card-body a,
 
 /* ── Page hero: reduce padding on phone ─────────────────────── */
 @media (max-width: 640px) {
-  .page-hero { padding: 6rem 0 3rem; }
+  .page-hero { padding: 5rem 0 2.5rem; }
 }
 
 /* ── Section spacing: tighter on mobile ─────────────────────── */

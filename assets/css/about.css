@@ -91,7 +91,7 @@
 .purpose-number {
   font-family: var(--font-heading);
   font-size: var(--fs-3xl);
-  color: rgba(16,43,82,0.08);
+  color: rgba(0,0,255,0.07);
   font-weight: 900;
   line-height: 1;
   margin-bottom: 0.25rem;
@@ -173,7 +173,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 80% 20%, rgba(198,40,40,0.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 80% 20%, rgba(255,0,0,0.07) 0%, transparent 60%);
 }
 .message-inner {
   position: relative;
@@ -184,7 +184,7 @@
 }
 .message-icon {
   font-size: 3rem;
-  color: rgba(198,40,40,0.7);
+  color: rgba(255,0,0,0.7);
   margin-bottom: var(--space-sm);
   display: block;
 }

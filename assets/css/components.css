@@ -184,7 +184,7 @@
     right: -100%;
     width: min(300px, 82vw);
     height: 100vh;
-    background: rgba(11, 30, 58, 0.97);
+    background: rgba(0,0,204,0.97);
     border-left: 3px solid var(--red);
     flex-direction: column;
     align-items: flex-start;
@@ -246,7 +246,6 @@
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.55);
   z-index: 999;
   transition: opacity 0.3s ease;
 }
@@ -932,7 +931,7 @@
 
 .form-control:focus {
   border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(16,43,82,0.1);
+  box-shadow: 0 0 0 3px rgba(0,0,255,0.1);
 }
 
 .form-control.error {
@@ -994,7 +993,7 @@ select.form-control {
 /* ── PAGE HERO (inner pages) ───────────────────────────────── */
 .page-hero {
   background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
-  padding: 8rem 0 4rem;
+  padding: 5.5rem 0 4rem;
   text-align: center;
   position: relative;
   overflow: hidden;

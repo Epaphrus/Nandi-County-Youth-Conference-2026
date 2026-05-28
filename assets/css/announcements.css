@@ -1,0 +1,172 @@
+/* ============================================================
+   announcements.css
+   ============================================================ */
+
+.ann-layout {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 1024px) {
+  .ann-layout {
+    grid-template-columns: 1fr 300px;
+    grid-template-rows: auto 1fr;
+  }
+  .ann-filters  { grid-column: 1; }
+  .ann-list     { grid-column: 1; }
+  .ann-sidebar  { grid-column: 2; grid-row: 1 / 3; }
+}
+
+/* ── Filters ───────────────────────────────────────────────── */
+.ann-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--white);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.ann-filter-label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--gray-text);
+  margin-right: 0.25rem;
+}
+.ann-filter-btn {
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 2px solid var(--gray-mid);
+  background: var(--white);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--gray-text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.ann-filter-btn:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+.ann-filter-btn.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--white);
+}
+
+/* ── Announcement cards ────────────────────────────────────── */
+.ann-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.ann-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--blue);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.ann-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
+}
+.ann-card[data-category="urgent"] {
+  border-left-color: var(--red);
+}
+.ann-card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xs);
+  flex-wrap: wrap;
+}
+.ann-date {
+  font-size: var(--fs-xs);
+  color: var(--gray-text);
+  margin-left: auto;
+}
+.ann-card-title {
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.ann-card-title i { color: var(--red); font-size: 1rem; flex-shrink: 0; }
+.ann-card-body p  { font-size: var(--fs-sm); }
+.ann-card-body a  { color: var(--blue); font-weight: 600; text-decoration: underline; }
+.ann-card-cta { margin-top: var(--space-sm); }
+
+.ann-empty {
+  text-align: center;
+  padding: var(--space-xl);
+  color: var(--gray-text);
+}
+.ann-empty i { font-size: 3rem; opacity: 0.3; display: block; margin-bottom: var(--space-sm); }
+
+/* ── Sidebar ───────────────────────────────────────────────── */
+.ann-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.ann-subscribe-card {
+  background: #075e54;
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  text-align: center;
+}
+.ann-sub-icon {
+  font-size: 2.5rem;
+  color: #25D366;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.ann-subscribe-card h4 { color: var(--white); margin-bottom: 0.5rem; }
+.ann-subscribe-card p  { color: rgba(255,255,255,0.8); font-size: var(--fs-sm); margin-bottom: var(--space-sm); }
+
+.ann-quick-links-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+}
+.ann-quick-links-card h4 {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: var(--space-sm);
+}
+.ann-quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.ann-quick-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--fs-sm);
+  color: var(--gray-text);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--gray);
+  transition: color var(--transition), padding-left var(--transition);
+}
+.ann-quick-links a:last-child { border-bottom: none; }
+.ann-quick-links a:hover { color: var(--blue); padding-left: 4px; }
+.ann-quick-links a i { color: var(--blue); width: 16px; text-align: center; }
+
+/* Hidden card animation */
+.ann-card.hidden { display: none; }

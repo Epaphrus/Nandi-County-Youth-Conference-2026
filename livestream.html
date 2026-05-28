@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="assets/icons/repentance-and-holiness-logo.png" />
+  <link rel="apple-touch-icon" href="assets/icons/repentance-and-holiness-logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Watch the Nandi County Youth Conference 2026 live online. Embedded YouTube livestream with live chat, prayer requests, and session schedule." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Livestream | NCYC 2026" />
+  <meta property="og:description" content="Watch NCYC 2026 live — 10–15 August 2026. Revival, worship, and the Word from Kapsabet." />
+  <meta property="og:url"         content="https://ncyc2026.co.ke/livestream.html" />
+  <meta property="og:image"       content="assets/images/og-image.jpg" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Watch Live | NCYC 2026" />
+  <meta name="twitter:description" content="Watch NCYC 2026 live — revival, worship and the Word from Kapsabet." />
+  <link rel="canonical" href="https://ncyc2026.co.ke/livestream.html" />
+
+  <title>Livestream | Nandi County Youth Conference 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/livestream.css" />
+  <link rel="stylesheet" href="assets/css/performance.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+<body>
+
+  <div id="navbar-placeholder"></div>
+
+  <main>
+
+    <!-- ══ PAGE HERO ══ -->
+    <section class="page-hero" aria-labelledby="ls-hero-h">
+      <div class="container">
+        <div class="page-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            <span aria-current="page">Livestream</span>
+          </nav>
+          <h1 id="ls-hero-h">Watch Live</h1>
+          <p>Can't make it to Kapsabet? Watch every session live from wherever you are.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ LIVE STATUS BANNER ══ -->
+    <div class="ls-status-bar" role="status" aria-live="polite" id="ls-status-bar">
+      <div class="container">
+        <div class="ls-status-inner">
+          <span class="ls-status-dot" id="ls-status-dot" aria-hidden="true"></span>
+          <span id="ls-status-text">Conference begins 10 August 2026 — Livestream will go live then</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PLAYER + CHAT ══ -->
+    <section class="section bg-gray" aria-labelledby="player-h">
+      <div class="container">
+        <div class="ls-main-layout">
+
+          <!-- Video player -->
+          <div class="ls-player-col" data-aos="fade-right">
+            <h2 class="sr-only" id="player-h">Livestream player</h2>
+
+            <!-- Pre-conference placeholder (shown when not live) -->
+            <div class="ls-placeholder" id="ls-placeholder" aria-label="Livestream — not yet active">
+              <div class="ls-placeholder-inner">
+                <i class="fas fa-play-circle" aria-hidden="true"></i>
+                <h3>Livestream Starts 10 August 2026</h3>
+                <p>The stream will go live when the conference begins. Check back then, or join the WhatsApp group to be notified the moment we go live.</p>
+                <a href="https://wa.me/254700000000?text=Notify%20me%20when%20NCYC%202026%20livestream%20goes%20live" class="btn btn-whatsapp" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp" aria-hidden="true"></i> Notify Me on WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <!-- YouTube embed (hidden until live — swap placeholder for this during conference) -->
+            <div class="ls-embed-wrap" id="ls-embed-wrap" style="display:none;" aria-label="YouTube livestream player">
+              <!-- Replace VIDEO_ID with the actual YouTube live stream ID during the conference -->
+              <iframe
+                id="yt-player"
+                src="https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID&autoplay=0"
+                title="NCYC 2026 Livestream"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin">
+              </iframe>
+            </div>
+
+            <!-- Session info card under player -->
+            <div class="ls-session-now" id="ls-session-now" aria-label="Current session">
+              <div class="ls-session-info">
+                <span class="ls-session-badge">
+                  <span class="ls-dot-pulse" aria-hidden="true"></span>
+                  On Air
+                </span>
+                <div>
+                  <h4 id="ls-current-title">Conference Not Yet Started</h4>
+                  <p id="ls-current-speaker">Check back on 10 August 2026</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar: instructions, prayer, schedule -->
+          <aside class="ls-sidebar-col" data-aos="fade-left" data-aos-delay="100" aria-label="Livestream information">
+
+            <!-- How to watch -->
+            <div class="ls-info-card">
+              <h3 class="ls-card-title">
+                <i class="fas fa-info-circle" aria-hidden="true"></i>
+                How to Watch
+              </h3>
+              <ol class="ls-how-list" role="list">
+                <li><span>1</span> Return to this page on <strong>10 August 2026</strong></li>
+                <li><span>2</span> The stream will <strong>auto-appear</strong> when we go live</li>
+                <li><span>3</span> Click <strong>play</strong> on the video player</li>
+                <li><span>4</span> Use <strong>YouTube Live Chat</strong> to interact</li>
+                <li><span>5</span> Share the link with friends and family</li>
+              </ol>
+            </div>
+
+            <!-- Prayer requests -->
+            <div class="ls-prayer-card" aria-labelledby="ls-prayer-h">
+              <h3 id="ls-prayer-h" class="ls-card-title">
+                <i class="fas fa-hands-praying" aria-hidden="true"></i>
+                Submit a Prayer Request
+              </h3>
+              <p>Send your prayer request during the live sessions and our intercession team will pray with you.</p>
+              <form id="ls-prayer-form" class="ls-prayer-form" novalidate aria-label="Prayer request form">
+                <div class="form-group">
+                  <label for="ls-name" class="sr-only">Your name</label>
+                  <input type="text" id="ls-name" name="name" class="form-control" placeholder="Your name" required aria-required="true" />
+                </div>
+                <div class="form-group">
+                  <label for="ls-request" class="sr-only">Your prayer request</label>
+                  <textarea id="ls-request" name="request" class="form-control" placeholder="Your prayer request..." rows="4" required aria-required="true"></textarea>
+                </div>
+                <div id="ls-prayer-success" class="alert alert-success" role="alert" aria-live="polite" style="display:none;">
+                  <i class="fas fa-check-circle" aria-hidden="true"></i>
+                  <span>Your request has been received. We are praying with you.</span>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+                  <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Prayer Request
+                </button>
+              </form>
+            </div>
+
+            <!-- Live chat instructions -->
+            <div class="ls-info-card" aria-labelledby="ls-chat-h">
+              <h3 id="ls-chat-h" class="ls-card-title">
+                <i class="fas fa-comments" aria-hidden="true"></i>
+                Live Chat
+              </h3>
+              <p style="font-size:var(--fs-sm);">During sessions, YouTube Live Chat will be enabled. To participate:</p>
+              <ul class="ls-chat-tips" role="list">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Sign in with a Google account</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Keep messages respectful and uplifting</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Use <strong>#NCYC2026</strong> in your messages</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Moderators are present to maintain order</li>
+              </ul>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SESSION SCHEDULE ══ -->
+    <section class="section bg-white" aria-labelledby="ls-schedule-h">
+      <div class="container">
+        <div class="section-header centered" data-aos="fade-up">
+          <span class="section-label">Streaming Schedule</span>
+          <h2 id="ls-schedule-h">When to Tune In</h2>
+          <div class="divider centered"></div>
+          <p class="section-subtitle">Sessions will be streamed live on YouTube. All times are East Africa Time (EAT, UTC+3).</p>
+        </div>
+        <div class="ls-schedule-grid" data-aos="fade-up" data-aos-delay="80">
+          <div class="ls-schedule-card">
+            <div class="ls-sched-date">10 Aug</div>
+            <div class="ls-sched-body">
+              <h4>Opening Night</h4>
+              <p><i class="fas fa-clock" aria-hidden="true"></i> 7:00 PM – 10:00 PM EAT</p>
+              <span class="badge badge-red">Opening Service</span>
+            </div>
+          </div>
+          <div class="ls-schedule-card">
+            <div class="ls-sched-date">11–14 Aug</div>
+            <div class="ls-sched-body">
+              <h4>Daily Sessions</h4>
+              <p><i class="fas fa-clock" aria-hidden="true"></i> 9:00 AM, 2:00 PM & 7:00 PM EAT</p>
+              <span class="badge badge-blue">Revival Sessions</span>
+            </div>
+          </div>
+          <div class="ls-schedule-card">
+            <div class="ls-sched-date">15 Aug</div>
+            <div class="ls-sched-body">
+              <h4>Closing & Commissioning</h4>
+              <p><i class="fas fa-clock" aria-hidden="true"></i> 9:00 AM – 1:00 PM EAT</p>
+              <span class="badge badge-blue">Commissioning</span>
+            </div>
+          </div>
+        </div>
+        <p class="ls-schedule-note" data-aos="fade-up">
+          <i class="fas fa-info-circle" aria-hidden="true"></i>
+          Not all sessions will be live-streamed. Morning prayer watches are in-person only. Join the WhatsApp group for session-by-session streaming updates.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/livestream.js" defer></script>
+</body>
+</html>

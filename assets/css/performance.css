@@ -1,0 +1,82 @@
+/* ============================================================
+   performance.css — Font display, render hints, lazy load styles
+   Include in every page after style.css and components.css
+   ============================================================ */
+
+/* Force swap on Google Font faces to eliminate FOIT */
+@font-face {
+  font-family: 'Cinzel';
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+
+/* ── Lazy-loaded images ────────────────────────────────────── */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* ── Skeleton placeholders (while content loads) ──────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--gray) 25%, var(--gray-mid) 50%, var(--gray) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Content-visibility on off-screen sections (Chrome) ────── */
+.section,
+.section-sm,
+.section-lg {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 400px;
+}
+
+/* Disable content-visibility for hero (always visible) */
+.hero,
+.countdown-section,
+.page-hero {
+  content-visibility: visible;
+}
+
+/* ── Reduce motion for users who prefer it ─────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-aos] {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ── Print styles ──────────────────────────────────────────── */
+@media print {
+  .navbar,
+  .countdown-section,
+  .whatsapp-banner,
+  .cta-section,
+  #scroll-top,
+  .footer-social,
+  .btn-whatsapp { display: none !important; }
+
+  body { color: #000; font-size: 12pt; }
+  a::after { content: " (" attr(href) ")"; font-size: 10pt; color: #555; }
+  .container { max-width: 100%; padding: 0; }
+}

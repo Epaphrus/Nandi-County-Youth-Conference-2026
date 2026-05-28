@@ -1,0 +1,79 @@
+/* ============================================================
+   NANDI COUNTY YOUTH CONFERENCE 2026
+   home.css — Homepage-specific styles
+   ============================================================ */
+
+/* ── Hero text column ──────────────────────────────────────── */
+.hero-text-col {
+  max-width: 740px;
+}
+
+/* ── About mini stats ──────────────────────────────────────── */
+.about-stats-row {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.mini-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--gray);
+  border-radius: var(--radius);
+  padding: 0.75rem 1.25rem;
+  min-width: 80px;
+  text-align: center;
+}
+
+.mini-stat strong {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  color: var(--blue);
+  line-height: 1;
+}
+
+.mini-stat span {
+  font-size: var(--fs-xs);
+  color: var(--gray-text);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+/* ── Programme preview grid ────────────────────────────────── */
+.programme-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-md);
+}
+
+/* ── Responsive hero adjustments ──────────────────────────── */
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .about-stat-badge {
+    right: 0;
+    bottom: -1rem;
+  }
+
+  .whatsapp-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .whatsapp-inner .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,240 @@
+/* ============================================================
+   responsive.css — Cross-device audit fixes
+   375px  mobile-first baseline
+   640px  large mobile / small tablet
+   768px  tablet portrait
+   1024px tablet landscape / small desktop
+   1200px full desktop
+   ============================================================ */
+
+/* ── Base (375px+) — ensure nothing overflows ──────────────── */
+html, body {
+  overflow-x: hidden;
+}
+
+img, video, iframe, embed, object {
+  max-width: 100%;
+}
+
+/* ── Touch targets: min 44×44px on all interactive elements ── */
+a, button,
+[role="button"],
+[tabindex="0"],
+input[type="checkbox"],
+input[type="radio"] {
+  min-height: 44px;
+  /* Don't force min-height on inline text links */
+}
+
+/* Restore inline-text links */
+p a, li a, .footer-links a, .ann-card-body a,
+.breadcrumb a, .fasting-note a, .gallery-note a,
+.speakers-tba-note a {
+  min-height: unset;
+}
+
+/* ── Navbar: prevent brand text overflow on tiny screens ────── */
+@media (max-width: 360px) {
+  .navbar-logo-main { font-size: 0.75rem; }
+  .navbar-logo-sub  { display: none; }
+}
+
+/* ── Hero: ensure text doesn't touch edges on 375px ────────── */
+@media (max-width: 480px) {
+  .hero-content { padding: 6rem 0 4rem; }
+  .hero-title   { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+  .hero-theme   { font-size: 1rem; }
+  .hero-tag     { font-size: 0.65rem; padding: 0.3rem 0.7rem; }
+}
+
+/* ── Countdown: single row on mobile, wrap gracefully ───────── */
+@media (max-width: 480px) {
+  .countdown-timer     { gap: 0.5rem; }
+  .countdown-unit      { min-width: 70px; }
+  .countdown-number    { font-size: 2rem; min-width: 70px; padding: 0.4rem 0.6rem; }
+  .countdown-separator { font-size: 1.75rem; padding-top: 0.5rem; }
+}
+
+/* ── About stat badge: don't bleed off image on mobile ──────── */
+@media (max-width: 640px) {
+  .about-stat-badge {
+    position: static;
+    margin-top: var(--space-sm);
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    border-radius: var(--radius);
+  }
+  .about-visual { text-align: center; }
+}
+
+/* ── Cards: ensure grid items never get too narrow ──────────── */
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* ── Programme tabs: scrollable row on narrow screens ────────── */
+@media (max-width: 480px) {
+  .day-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    justify-content: flex-start;
+  }
+  .day-tabs::-webkit-scrollbar { display: none; }
+  .day-tab { flex-shrink: 0; }
+}
+
+/* ── Timeline: fix dot bleed on small screens ───────────────── */
+@media (max-width: 640px) {
+  .timeline::before { left: 0; }
+}
+
+/* ── Registration form: stack 2-col rows on phones ──────────── */
+@media (max-width: 480px) {
+  .form-row-2 { grid-template-columns: 1fr; }
+  .reg-form-wrap { padding: var(--space-sm); }
+}
+
+/* ── Contact map: limit height on mobile ────────────────────── */
+@media (max-width: 640px) {
+  .map-embed iframe { height: 220px; }
+}
+
+/* ── Gallery grid: 2-col on mobile, 1-col on tiny ───────────── */
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Lightbox: full-screen layout on mobile ─────────────────── */
+@media (max-width: 640px) {
+  .lightbox { padding: var(--space-xs); }
+  .lightbox-content { max-width: 100vw; }
+  .lightbox-content img { max-height: 60vh; border-radius: var(--radius); }
+  .lightbox-content .lb-embed { width: 95vw; }
+}
+
+/* ── Announcement layout: stack sidebar below on mobile ─────── */
+@media (max-width: 1023px) {
+  .ann-layout { grid-template-columns: 1fr; }
+  .ann-sidebar { order: -1; }  /* Pull subscribe card above the feed */
+}
+
+/* ── Livestream layout: stack sidebar on tablet ──────────────── */
+@media (max-width: 1023px) {
+  .ls-main-layout { grid-template-columns: 1fr; }
+}
+
+/* ── Footer: readable on small screens ──────────────────────── */
+@media (max-width: 599px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { font-size: 0.7rem; }
+}
+
+/* ── Speakers grid: 1-col on mobile ─────────────────────────── */
+@media (max-width: 480px) {
+  .speakers-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Prayer points grid: 1-col on mobile ────────────────────── */
+@media (max-width: 480px) {
+  .prayer-points-grid { grid-template-columns: 1fr; }
+  .fasting-grid       { grid-template-columns: 1fr; }
+  .scriptures-grid    { grid-template-columns: 1fr; }
+}
+
+/* ── About page: stack objectives on mobile ──────────────────── */
+@media (max-width: 768px) {
+  .objectives-layout { grid-template-columns: 1fr; }
+  .about-split       { grid-template-columns: 1fr; }
+}
+
+/* ── Impact stats: 2-col always ─────────────────────────────── */
+.impact-stats { grid-template-columns: 1fr 1fr; }
+
+/* ── Vision card stack: 2-col always ────────────────────────── */
+.vision-card-stack { grid-template-columns: 1fr 1fr; }
+
+/* ── WhatsApp banner: vertical on mobile ────────────────────── */
+@media (max-width: 600px) {
+  .whatsapp-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .whatsapp-inner .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── CTA actions: stack on mobile ───────────────────────────── */
+@media (max-width: 480px) {
+  .cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cta-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+}
+
+/* ── Scroll-to-top: move slightly left on small screens ─────── */
+@media (max-width: 480px) {
+  #scroll-top { right: 1rem; bottom: 1.5rem; }
+}
+
+/* ── Page hero: reduce padding on phone ─────────────────────── */
+@media (max-width: 640px) {
+  .page-hero { padding: 6rem 0 3rem; }
+}
+
+/* ── Section spacing: tighter on mobile ─────────────────────── */
+@media (max-width: 640px) {
+  .section    { padding: var(--space-lg) 0; }
+  .section-lg { padding: var(--space-xl) 0; }
+}
+
+/* ── Speak inquiry: stack on mobile ─────────────────────────── */
+@media (max-width: 640px) {
+  .speak-inquiry {
+    flex-direction: column;
+    text-align: center;
+  }
+  .speak-inquiry-icon { margin: 0 auto; }
+  .speak-inquiry .btn { width: 100%; justify-content: center; }
+}
+
+/* ── Livestream schedule: 1-col on mobile ───────────────────── */
+@media (max-width: 640px) {
+  .ls-schedule-grid { grid-template-columns: 1fr; }
+  .ls-schedule-card { flex-direction: column; }
+  .ls-sched-date {
+    writing-mode: horizontal-tb;
+    min-width: unset;
+    padding: var(--space-xs) var(--space-md);
+  }
+}
+
+/* ── Ministry layout: centered on mobile ────────────────────── */
+@media (max-width: 767px) {
+  .ministry-layout { grid-template-columns: 1fr; text-align: center; }
+  .ministry-icon-col { margin: 0 auto; }
+}
+
+/* ── Purpose grid: 1-col on mobile ─────────────────────────── */
+@media (max-width: 480px) {
+  .purpose-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Reg sidebar: show below on mobile ──────────────────────── */
+@media (max-width: 899px) {
+  .reg-layout { grid-template-columns: 1fr; }
+}

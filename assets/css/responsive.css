@@ -186,8 +186,6 @@ p a, li a, .footer-links a, .ann-card-body a,
     width: 100%;
     justify-content: center;
   }
-  .hero-actions { flex-direction: column; }
-  .hero-actions .btn { width: 100%; justify-content: center; }
 }
 
 /* ── Scroll-to-top: move slightly left on small screens ─────── */

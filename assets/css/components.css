@@ -93,6 +93,7 @@
 }
 
 .navbar-menu a {
+  position: relative;
   font-size: var(--fs-sm);
   font-weight: 500;
   color: rgba(255,255,255,0.85);
@@ -101,14 +102,39 @@
   display: flex;
   align-items: center;
   border-radius: var(--radius);
-  transition: color var(--transition), background var(--transition);
+  transition: color var(--transition);
   white-space: nowrap;
 }
 
-.navbar-menu a:hover,
+/* Sliding underline — shared by hover and active */
+.navbar-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 60%;
+  height: 2px;
+  background: var(--red);
+  border-radius: 2px;
+  transition: transform 0.25s ease;
+}
+
+.navbar-menu a:hover {
+  color: var(--white);
+}
+
+.navbar-menu a:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
 .navbar-menu a.active {
   color: var(--white);
-  background: rgba(255,255,255,0.12);
+}
+
+.navbar-menu a.active::after {
+  transform: translateX(-50%) scaleX(1);
 }
 
 .navbar-cta {
@@ -156,20 +182,26 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: min(320px, 85vw);
+    width: min(300px, 82vw);
     height: 100vh;
-    background: var(--blue-dark);
+    background: rgba(11, 30, 58, 0.97);
+    border-left: 3px solid var(--red);
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    padding: 5rem var(--space-lg) var(--space-lg);
-    transition: right var(--transition);
-    box-shadow: -4px 0 30px rgba(0,0,0,0.4);
+    padding: 4.5rem var(--space-lg) var(--space-lg);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -8px 0 32px rgba(0,0,0,0.45);
     overflow-y: auto;
   }
 
   .navbar-menu.open {
     right: 0;
+  }
+
+  /* Suppress underline animation in drawer — use left border instead */
+  .navbar-menu a::after {
+    display: none;
   }
 
   .navbar-menu a {
@@ -178,6 +210,18 @@
     font-size: var(--fs-base);
     border-bottom: 1px solid rgba(255,255,255,0.07);
     border-radius: 0;
+    border-left: 3px solid transparent;
+    transition: color var(--transition), border-left-color var(--transition), background var(--transition);
+  }
+
+  .navbar-menu a:hover {
+    background: rgba(255,255,255,0.06);
+    border-left-color: rgba(198,40,40,0.5);
+  }
+
+  .navbar-menu a.active {
+    border-left-color: var(--red);
+    background: rgba(198,40,40,0.1);
   }
 
   .navbar-cta {
@@ -202,8 +246,9 @@
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.55);
   z-index: 999;
+  transition: opacity 0.3s ease;
 }
 
 .nav-backdrop.open {

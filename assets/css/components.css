@@ -216,12 +216,12 @@
 
   .navbar-menu a:hover {
     background: rgba(255,255,255,0.06);
-    border-left-color: rgba(198,40,40,0.5);
+    border-left-color: rgba(255,0,0,0.4);
   }
 
   .navbar-menu a.active {
     border-left-color: var(--red);
-    background: rgba(198,40,40,0.1);
+    background: rgba(255,0,0,0.1);
   }
 
   .navbar-cta {
@@ -286,13 +286,13 @@
   );
 }
 
-/* Subtle cross/light pattern */
+/* Subtle light pattern */
 .hero-bg-fallback::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 60% 40%, rgba(198,40,40,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 65% 40%, rgba(255,0,0,0.07) 0%, transparent 55%),
     radial-gradient(ellipse at 20% 70%, rgba(255,255,255,0.04) 0%, transparent 50%);
 }
 
@@ -300,16 +300,16 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 7rem 0 5rem;
+  padding: 5rem 0 4rem;
 }
 
 .hero-tag {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(198,40,40,0.15);
-  border: 1px solid rgba(198,40,40,0.4);
-  color: #ff8a80;
+  background: rgba(255,0,0,0.15);
+  border: 1px solid rgba(255,0,0,0.4);
+  color: rgba(255,255,255,0.85);
   font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.15em;
@@ -323,16 +323,29 @@
   color: var(--white);
   margin-bottom: var(--space-sm);
   text-shadow: 0 2px 20px rgba(0,0,0,0.4);
-  max-width: 800px;
+}
+
+.hero-year {
+  color: var(--red);
+  display: inline-block;
 }
 
 .hero-theme {
   font-family: var(--font-heading);
-  font-size: clamp(var(--fs-lg), 2.8vw, var(--fs-2xl));
+  font-size: clamp(var(--fs-base), 2.2vw, var(--fs-lg));
   color: rgba(255,255,255,0.85);
   font-style: italic;
   margin-bottom: var(--space-md);
-  max-width: 700px;
+  max-width: 600px;
+}
+
+.hero-scripture {
+  display: block;
+  font-size: 0.75em;
+  opacity: 0.65;
+  margin-top: 0.25rem;
+  font-style: normal;
+  letter-spacing: 0.05em;
 }
 
 .hero-meta {
@@ -646,7 +659,7 @@
   right: -20%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(198,40,40,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255,0,0,0.07) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -924,7 +937,7 @@
 
 .form-control.error {
   border-color: var(--red);
-  box-shadow: 0 0 0 3px rgba(198,40,40,0.1);
+  box-shadow: 0 0 0 3px rgba(255,0,0,0.1);
 }
 
 .form-control.success {
@@ -991,7 +1004,7 @@ select.form-control {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 100%, rgba(198,40,40,0.07) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 50% 100%, rgba(255,0,0,0.07) 0%, transparent 70%);
 }
 
 .page-hero-content {

@@ -82,11 +82,8 @@ function buildDayPanels() {
                 </div>
                 <div class="timeline-info">
                   <h4>${s.title}</h4>
-                  ${s.speaker ? `<p class="timeline-speaker"><i class="fas fa-microphone" aria-hidden="true"></i> ${s.speaker}</p>` : ''}
+                  ${s.speaker && !s.speaker.includes('[') ? `<p class="timeline-speaker"><i class="fas fa-microphone" aria-hidden="true"></i> ${s.speaker}</p>` : ''}
                 </div>
-                <span class="badge ${SESSION_TYPE_COLORS[s.type] || 'badge-blue'}" aria-label="Session type: ${SESSION_LABELS[s.type] || s.type}">
-                  ${SESSION_LABELS[s.type] || s.type}
-                </span>
               </div>
             </div>
           </div>

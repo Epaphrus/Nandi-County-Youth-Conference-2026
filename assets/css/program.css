@@ -67,6 +67,8 @@
 .day-panel.active {
   display: block;
   animation: fadeSlideIn 0.35s ease;
+  border-top: 3px solid var(--blue);
+  padding-top: var(--space-lg);
 }
 
 @keyframes fadeSlideIn {
@@ -211,6 +213,11 @@
   margin-bottom: var(--space-lg);
 }
 
+.programme-header .legend-row {
+  justify-content: center;
+  margin-top: var(--space-sm);
+}
+
 /* ── Day tab theme line ─────────────────────────────────────── */
 .tab-theme {
   font-size: 0.65rem;
@@ -266,6 +273,20 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+}
+
+/* ── Tablet: tighten timeline padding ──────────────────────── */
+@media (min-width: 641px) and (max-width: 900px) {
+  .timeline {
+    padding-left: 80px;
+  }
+  .timeline::before {
+    left: 60px;
+  }
+  .timeline-time {
+    left: -80px;
+    width: 55px;
+  }
 }
 
 /* ── Mobile: collapse timeline to cards ────────────────────── */

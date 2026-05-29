@@ -33,13 +33,8 @@ function initNavbar() {
 
   if (!navbar) return;
 
-  // Scroll: add .scrolled class
-  const onScroll = () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-    updateScrollTopBtn();
-  };
+  const onScroll = () => updateScrollTopBtn();
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
   // Mobile toggle
   if (toggle && menu) {

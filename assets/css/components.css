@@ -10,15 +10,9 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: transparent;
-  transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+  background: var(--blue);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.15);
   padding: 0.75rem 0;
-}
-
-.navbar.scrolled {
-  background: var(--blue-dark);
-  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
-  padding: 0.5rem 0;
 }
 
 .navbar .container {
@@ -257,10 +251,12 @@
 /* ── HERO ───────────────────────────────────────────────────── */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: 100vh; /* fallback for browsers without dvh */
   display: flex;
-  align-items: center;
-  background: var(--blue-dark);
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--white);
   overflow: hidden;
 }
 
@@ -276,39 +272,36 @@
 .hero-bg-fallback {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    var(--blue-dark) 0%,
-    var(--blue) 40%,
-    var(--blue-light) 70%,
-    var(--blue-dark) 100%
-  );
+  background: var(--white);
 }
 
-/* Subtle light pattern */
+/* Subtle decorative tint */
 .hero-bg-fallback::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 65% 40%, rgba(255,0,0,0.07) 0%, transparent 55%),
-    radial-gradient(ellipse at 20% 70%, rgba(255,255,255,0.04) 0%, transparent 50%);
+    radial-gradient(ellipse at 70% 30%, rgba(0,0,255,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(255,0,0,0.03) 0%, transparent 50%);
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 5rem 0 4rem;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 5rem 0 3rem;
 }
 
 .hero-tag {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255,0,0,0.15);
-  border: 1px solid rgba(255,0,0,0.4);
-  color: rgba(255,255,255,0.85);
+  background: rgba(255,0,0,0.08);
+  border: 1px solid rgba(255,0,0,0.3);
+  color: var(--red);
   font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.15em;
@@ -319,9 +312,9 @@
 }
 
 .hero-title {
-  color: var(--white);
+  color: var(--blue);
   margin-bottom: var(--space-sm);
-  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  text-shadow: none;
 }
 
 .hero-year {
@@ -332,7 +325,7 @@
 .hero-theme {
   font-family: var(--font-heading);
   font-size: clamp(var(--fs-base), 2.2vw, var(--fs-lg));
-  color: rgba(255,255,255,0.85);
+  color: var(--black);
   font-style: italic;
   margin-bottom: var(--space-md);
   max-width: 600px;
@@ -341,7 +334,7 @@
 .hero-scripture {
   display: block;
   font-size: 0.75em;
-  opacity: 0.65;
+  opacity: 0.55;
   margin-top: 0.25rem;
   font-style: normal;
   letter-spacing: 0.05em;
@@ -358,7 +351,7 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  color: rgba(255,255,255,0.8);
+  color: var(--black);
   font-size: var(--fs-sm);
   font-weight: 500;
 }
@@ -376,24 +369,15 @@
 }
 
 .hero-scroll-hint {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  color: rgba(255,255,255,0.5);
-  font-size: var(--fs-xs);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  justify-content: center;
+  margin-top: var(--space-sm);
+  color: rgba(255,255,255,0.4);
   animation: bounce 2s infinite;
 }
 
 .hero-scroll-hint i {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 @keyframes bounce {
@@ -402,9 +386,12 @@
 }
 
 /* ── COUNTDOWN ─────────────────────────────────────────────── */
-.countdown-section {
+.hero-countdown {
+  position: relative;
+  z-index: 2;
+  width: 100%;
   background: var(--blue);
-  padding: var(--space-lg) 0;
+  padding: var(--space-md) 0;
 }
 
 .countdown-inner {

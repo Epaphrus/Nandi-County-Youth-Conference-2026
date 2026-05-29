@@ -44,7 +44,7 @@ img[loading="lazy"].loaded {
 
 /* Disable content-visibility for hero (always visible) */
 .hero,
-.countdown-section,
+.hero-countdown,
 .page-hero {
   content-visibility: visible;
 }
@@ -69,7 +69,7 @@ img[loading="lazy"].loaded {
 /* ── Print styles ──────────────────────────────────────────── */
 @media print {
   .navbar,
-  .countdown-section,
+  .hero-countdown,
   .whatsapp-banner,
   .cta-section,
   #scroll-top,

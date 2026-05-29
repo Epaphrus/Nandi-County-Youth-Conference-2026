@@ -3,14 +3,6 @@
    program.js — Renders day tabs and session timeline
    ============================================================ */
 
-const SESSION_LABELS = {
-  sermon:   'Sermon / Teaching',
-  prayer:   'Prayer',
-  worship:  'Worship',
-  workshop: 'Workshop',
-  ceremony: 'Ceremony',
-  logistics:'Logistics',
-};
 
 function buildTabs() {
   const container = document.querySelector('.day-tabs');

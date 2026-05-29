@@ -194,10 +194,6 @@
   margin-bottom: var(--space-lg);
 }
 
-.programme-header .legend-row {
-  justify-content: center;
-  margin-top: var(--space-sm);
-}
 
 /* ── Day tab theme line ─────────────────────────────────────── */
 .tab-theme {
@@ -236,25 +232,6 @@
   font-size: var(--fs-md);
 }
 
-/* ── Legend ────────────────────────────────────────────────── */
-.legend-row {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  flex-wrap: wrap;
-}
-
-.legend-title {
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  color: var(--gray-text);
-}
-
-.legend-items {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
 
 /* ── Tablet: tighten timeline padding ──────────────────────── */
 @media (min-width: 641px) and (max-width: 900px) {

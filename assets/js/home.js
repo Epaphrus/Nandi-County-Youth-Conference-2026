@@ -21,35 +21,76 @@ function renderSpeakers() {
   `).join('');
 }
 
-function renderProgrammePreview() {
-  const grid = document.getElementById('programme-preview-grid');
-  if (!grid || typeof PROGRAM === 'undefined') return;
+function renderProgrammeTabs() {
+  const tabBar = document.getElementById('prog-tabs');
+  const panel  = document.getElementById('prog-panel');
+  if (!tabBar || !panel || typeof PROGRAM === 'undefined') return;
 
-  // Show first 3 days as preview
-  const preview = PROGRAM.slice(0, 3);
+  // Build tab bar
+  tabBar.innerHTML = PROGRAM.map((day, i) => `
+    <button
+      class="prog-tab${i === 0 ? ' active' : ''}"
+      role="tab"
+      aria-selected="${i === 0}"
+      aria-controls="prog-panel"
+      data-index="${i}"
+    >
+      <span class="prog-tab-day">${day.day}</span>
+      <span class="prog-tab-theme">${day.theme}</span>
+    </button>
+  `).join('');
 
-  grid.innerHTML = preview.map((day, di) => `
-    <div class="program-day" data-aos="fade-up" data-aos-delay="${di * 100}">
-      <div class="program-day-header">
-        <h4>${day.day}: ${day.theme}</h4>
-        <span class="program-day-date">${day.date}</span>
+  function showDay(index) {
+    const day = PROGRAM[index];
+
+    // Update tab states
+    tabBar.querySelectorAll('.prog-tab').forEach((btn, i) => {
+      btn.classList.toggle('active', i === index);
+      btn.setAttribute('aria-selected', i === index);
+    });
+
+    // Render sessions
+    panel.innerHTML = `
+      <div class="prog-day-header">
+        <h3 class="prog-day-title">${day.day}: ${day.theme}</h3>
+        <span class="prog-day-date">${day.date}</span>
       </div>
-      <div class="program-sessions">
-        ${day.sessions.slice(0, 4).map(s => `
-          <div class="program-session">
-            <span class="session-time">${s.time}</span>
-            <div class="session-info">
+      <div class="prog-sessions">
+        ${day.sessions.map(s => `
+          <div class="prog-session">
+            <span class="prog-session-time">${s.time}</span>
+            <div class="prog-session-info">
               <h5>${s.title}</h5>
               ${s.speaker ? `<p>${s.speaker}</p>` : ''}
             </div>
+            <span class="prog-session-badge prog-badge-${s.type}">${s.type}</span>
           </div>
         `).join('')}
       </div>
-    </div>
-  `).join('');
+    `;
+  }
+
+  // Tab click handler
+  tabBar.addEventListener('click', e => {
+    const btn = e.target.closest('.prog-tab');
+    if (btn) showDay(parseInt(btn.dataset.index));
+  });
+
+  // Keyboard navigation
+  tabBar.addEventListener('keydown', e => {
+    const tabs = [...tabBar.querySelectorAll('.prog-tab')];
+    const current = tabs.findIndex(t => t.classList.contains('active'));
+    if (e.key === 'ArrowRight') {
+      tabs[(current + 1) % tabs.length].click();
+    } else if (e.key === 'ArrowLeft') {
+      tabs[(current - 1 + tabs.length) % tabs.length].click();
+    }
+  });
+
+  showDay(0);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   renderSpeakers();
-  renderProgrammePreview();
+  renderProgrammeTabs();
 });

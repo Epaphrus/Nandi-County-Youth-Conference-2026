@@ -688,71 +688,200 @@
   }
 }
 
-/* ── PROGRAM PREVIEW ───────────────────────────────────────── */
-.program-day {
-  background: var(--white);
+/* ── PROGRAMME TABS ────────────────────────────────────────── */
+.prog-tabs {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-lg);
 }
 
-.program-day-header {
+.prog-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: var(--space-sm) var(--space-xs);
+  background: var(--white);
+  border: none;
+  border-right: 1px solid rgba(0,0,0,0.08);
+  cursor: pointer;
+  text-align: center;
+  min-height: 72px;
+  transition: background var(--transition), color var(--transition);
+}
+
+.prog-tab:last-child {
+  border-right: none;
+}
+
+.prog-tab:hover {
+  background: var(--gray);
+}
+
+.prog-tab.active {
   background: var(--blue);
+}
+
+.prog-tab-day {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+  transition: color var(--transition);
+}
+
+.prog-tab.active .prog-tab-day {
+  color: rgba(255,255,255,0.7);
+}
+
+.prog-tab-theme {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--black);
+  line-height: 1.3;
+  transition: color var(--transition);
+}
+
+.prog-tab.active .prog-tab-theme {
   color: var(--white);
-  padding: var(--space-sm) var(--space-md);
+}
+
+/* Panel */
+.prog-panel {
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.prog-day-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  background: var(--gray);
 }
 
-.program-day-header h4 {
-  color: var(--white);
-  font-size: var(--fs-base);
+.prog-day-title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--blue);
   margin: 0;
 }
 
-.program-day-date {
-  font-size: var(--fs-xs);
-  color: rgba(255,255,255,0.7);
-  font-weight: 600;
+.prog-day-date {
+  font-size: var(--fs-sm);
+  color: rgba(0,0,0,0.4);
+  font-weight: 500;
 }
 
-.program-sessions {
-  padding: var(--space-sm) 0;
+.prog-sessions {
+  padding: 0;
 }
 
-.program-session {
+.prog-session {
   display: flex;
-  gap: var(--space-sm);
-  padding: 0.75rem var(--space-md);
-  border-bottom: 1px solid var(--gray);
-  align-items: flex-start;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-lg);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  transition: background var(--transition);
 }
 
-.program-session:last-child {
+.prog-session:last-child {
   border-bottom: none;
 }
 
-.session-time {
+.prog-session:hover {
+  background: rgba(0,0,255,0.02);
+}
+
+.prog-session-time {
   font-size: var(--fs-xs);
   font-weight: 700;
   color: var(--blue);
-  min-width: 80px;
-  padding-top: 2px;
+  min-width: 72px;
+  flex-shrink: 0;
 }
 
-.session-info h5 {
-  font-family: var(--font-body);
+.prog-session-info {
+  flex: 1;
+}
+
+.prog-session-info h5 {
   font-size: var(--fs-sm);
   font-weight: 600;
   color: var(--black);
-  margin-bottom: 0.2rem;
+  margin: 0 0 0.15rem;
 }
 
-.session-info p {
+.prog-session-info p {
   font-size: var(--fs-xs);
-  color: var(--gray-text);
+  color: rgba(0,0,0,0.4);
   margin: 0;
+}
+
+.prog-session-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.prog-badge-sermon   { background: rgba(0,0,255,0.08);  color: var(--blue); }
+.prog-badge-prayer   { background: rgba(255,0,0,0.08);  color: var(--red); }
+.prog-badge-worship  { background: rgba(0,128,0,0.08);  color: #1a6b1a; }
+.prog-badge-workshop { background: rgba(0,0,0,0.05);    color: rgba(0,0,0,0.5); }
+.prog-badge-ceremony { background: rgba(0,0,0,0.05);    color: rgba(0,0,0,0.5); }
+.prog-badge-logistics{ background: rgba(0,0,0,0.05);    color: rgba(0,0,0,0.5); }
+
+/* Responsive tabs */
+@media (max-width: 768px) {
+  .prog-tabs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .prog-tab:nth-child(3n) {
+    border-right: none;
+  }
+  .prog-tab:nth-child(n+4) {
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+}
+
+@media (max-width: 480px) {
+  .prog-tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .prog-tab:nth-child(2n) {
+    border-right: none;
+  }
+  .prog-tab:nth-child(3n) {
+    border-right: 1px solid rgba(0,0,0,0.08);
+  }
+  .prog-tab:nth-child(2n+1):nth-child(n+3) {
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .prog-day-header {
+    padding: var(--space-sm) var(--space-md);
+  }
+  .prog-session {
+    padding: var(--space-sm) var(--space-md);
+    gap: var(--space-sm);
+  }
+  .prog-session-badge {
+    display: none;
+  }
 }
 
 

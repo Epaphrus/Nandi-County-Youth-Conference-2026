@@ -285,28 +285,29 @@
   background-repeat: no-repeat;
 }
 
-/* Dark gradient rising from the bottom — text lives in this zone */
+/* Dark overlay — consistent across the full image */
 .hero--photo .hero-bg-fallback::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0,0,0,0.15) 0%,
-    rgba(0,0,0,0.25) 40%,
-    rgba(0,0,0,0.72) 100%
+    rgba(0,0,0,0.45) 0%,
+    rgba(0,0,0,0.55) 50%,
+    rgba(0,0,0,0.80) 100%
   );
 }
 
 /* All text switches to white over the photo */
 .hero--photo .hero-tag {
-  border-color: rgba(255,255,255,0.6);
+  border-color: rgba(255,255,255,0.85);
   color: var(--white);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
 }
 
 .hero--photo .hero-title {
   color: var(--white);
-  text-shadow: 0 2px 24px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
 }
 
 .hero--photo .hero-year {
@@ -318,15 +319,18 @@
 }
 
 .hero--photo .hero-theme {
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.95);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
 }
 
 .hero--photo .hero-scripture {
-  opacity: 0.6;
+  opacity: 0.8;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
 }
 
 .hero--photo .hero-meta-item {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
 }
 
 .hero--photo .hero-meta-item i {

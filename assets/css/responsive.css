@@ -41,22 +41,22 @@ p a, li a, .footer-links a, .ann-card-body a,
 
 /* ── Hero: ensure text doesn't touch edges on mobile ────────── */
 @media (max-width: 768px) {
-  .hero-content { padding: 4.5rem 0 3rem; }
+  .hero-content { padding: 6rem 0 3rem; }
 }
 
 @media (max-width: 480px) {
-  .hero-content { padding: 4rem 0 2.5rem; }
-  .hero-title   { font-size: clamp(1.75rem, 8vw, 2.5rem); }
-  .hero-theme   { font-size: 1rem; }
-  .hero-tag     { font-size: 0.65rem; padding: 0.3rem 0.7rem; }
+  .hero-content { padding: 5rem 0 2.5rem; }
+  .hero-title   { font-size: clamp(2rem, 10vw, 3rem); letter-spacing: -0.02em; }
+  .hero-theme   { font-size: var(--fs-base); }
+  .hero-tag     { font-size: 0.65rem; padding: 0.3rem 0.75rem; }
 }
 
-/* ── Countdown: single row on mobile, wrap gracefully ───────── */
+/* ── Countdown: compact on mobile ───────────────────────────── */
 @media (max-width: 480px) {
-  .countdown-timer     { gap: 0.5rem; }
-  .countdown-unit      { min-width: 70px; }
-  .countdown-number    { font-size: 2rem; min-width: 70px; padding: 0.4rem 0.6rem; }
-  .countdown-separator { font-size: 1.75rem; padding-top: 0.5rem; }
+  .countdown-timer     { gap: var(--space-sm); }
+  .countdown-unit      { min-width: 60px; }
+  .countdown-number    { font-size: 2rem; }
+  .countdown-separator { font-size: 1.75rem; }
 }
 
 /* ── About stat badge: don't bleed off image on mobile ──────── */

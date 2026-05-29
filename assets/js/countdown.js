@@ -17,6 +17,7 @@
     const daysEl    = document.getElementById('cd-days');
     const hoursEl   = document.getElementById('cd-hours');
     const minutesEl = document.getElementById('cd-minutes');
+    const secondsEl = document.getElementById('cd-seconds');
 
     if (!daysEl) return;
 
@@ -24,6 +25,7 @@
       daysEl.textContent    = '00';
       hoursEl.textContent   = '00';
       minutesEl.textContent = '00';
+      if (secondsEl) secondsEl.textContent = '00';
 
       const label = document.getElementById('countdown-label');
       if (label) label.textContent = 'The Conference Is On — Welcome!';
@@ -33,14 +35,16 @@
     const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
     daysEl.textContent    = pad(days);
     hoursEl.textContent   = pad(hours);
     minutesEl.textContent = pad(minutes);
+    if (secondsEl) secondsEl.textContent = pad(seconds);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
     updateCountdown();
-    setInterval(updateCountdown, 60 * 1000); // update every minute
+    setInterval(updateCountdown, 1000);
   });
 })();

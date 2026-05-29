@@ -648,6 +648,46 @@
   margin: 0;
 }
 
+/* ── SPEAKERS FULL-WIDTH GRID ──────────────────────────────── */
+.speakers-full-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  width: 100%;
+  margin-top: var(--space-lg);
+}
+
+.speakers-full-grid .speaker-card {
+  border-radius: 0;
+  box-shadow: none;
+  border-right: 1px solid rgba(0,0,0,0.06);
+}
+
+.speakers-full-grid .speaker-card:last-child {
+  border-right: none;
+}
+
+@media (max-width: 1024px) {
+  .speakers-full-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .speakers-full-grid .speaker-card:nth-child(2n) {
+    border-right: none;
+  }
+  .speakers-full-grid .speaker-card {
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+}
+
+@media (max-width: 480px) {
+  .speakers-full-grid {
+    grid-template-columns: 1fr;
+  }
+  .speakers-full-grid .speaker-card {
+    border-right: none;
+  }
+}
+
 /* ── PROGRAM PREVIEW ───────────────────────────────────────── */
 .program-day {
   background: var(--white);

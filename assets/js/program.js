@@ -63,9 +63,9 @@ function buildDayPanels() {
 
     panel.innerHTML = `
       <div class="day-panel-header">
-        <h3 class="day-panel-title">${day.day}: ${day.theme}</h3>
-        <p class="day-panel-date">${day.date}</p>
         <span class="day-theme-badge">${day.theme}</span>
+        <h3 class="day-panel-title">${day.day}</h3>
+        <p class="day-panel-date">${day.date}</p>
       </div>
 
       <div class="timeline" role="list" aria-label="Sessions for ${day.day}">
@@ -110,9 +110,10 @@ function showDay(index) {
     panel.classList.toggle('active', i === index);
   });
 
-  // Re-initialise AOS after panel becomes visible
-  if (typeof AOS !== 'undefined') {
-    requestAnimationFrame(() => AOS.refreshHard());
+  // On mobile, scroll the content panel into view
+  const panel = document.getElementById(`day-panel-${index}`);
+  if (panel && window.innerWidth < 768) {
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 

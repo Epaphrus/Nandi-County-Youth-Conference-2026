@@ -267,24 +267,91 @@
   overflow: hidden;
 }
 
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('../images/hero-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .hero-bg-fallback {
   position: absolute;
   inset: 0;
   background: var(--white);
 }
 
-/* No decorative tint — let the gray speak for itself */
 .hero-bg-fallback::after {
   content: none;
+}
+
+/* ── Photo hero variant ────────────────────────────────────── */
+.hero--photo .hero-bg-fallback {
+  background-image: url('../images/Procession.jpeg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* Dark gradient rising from the bottom — text lives in this zone */
+.hero--photo .hero-bg-fallback::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15) 0%,
+    rgba(0,0,0,0.25) 40%,
+    rgba(0,0,0,0.72) 100%
+  );
+}
+
+/* All text switches to white over the photo */
+.hero--photo .hero-tag {
+  border-color: rgba(255,255,255,0.6);
+  color: var(--white);
+}
+
+.hero--photo .hero-title {
+  color: var(--white);
+  text-shadow: 0 2px 24px rgba(0,0,0,0.3);
+}
+
+.hero--photo .hero-year {
+  color: var(--red);
+}
+
+.hero--photo .hero-title-divider {
+  background: var(--red);
+}
+
+.hero--photo .hero-theme {
+  color: rgba(255,255,255,0.9);
+}
+
+.hero--photo .hero-scripture {
+  opacity: 0.6;
+}
+
+.hero--photo .hero-meta-item {
+  color: rgba(255,255,255,0.8);
+}
+
+.hero--photo .hero-meta-item i {
+  color: var(--red);
+}
+
+/* Outline button reads white on photo */
+.hero--photo .btn-outline {
+  color: var(--white);
+  border-color: rgba(255,255,255,0.7);
+}
+
+.hero--photo .btn-outline:hover {
+  background: var(--white);
+  color: var(--blue);
+  border-color: var(--white);
+}
+
+.hero--photo .hero-scroll-hint {
+  color: rgba(255,255,255,0.5);
+}
+
+/* Countdown bar: dark translucent instead of solid blue */
+.hero--photo .hero-countdown {
+  background: rgba(0,0,0,0.55);
 }
 
 .hero-content {
@@ -293,8 +360,8 @@
   width: 100%;
   flex: 1;
   display: flex;
-  align-items: center;
-  padding: 8rem 0 4rem;
+  align-items: flex-end;
+  padding: 8rem 0 3rem;
 }
 
 /* Ghost pill — border only, no fill */

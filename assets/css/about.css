@@ -14,9 +14,9 @@
 
 .scripture-quote {
   border-left: 4px solid var(--red);
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-sm) var(--space-md) var(--space-sm) calc(var(--space-md) + 1.25rem);
   margin: var(--space-md) 0 0;
-  background: var(--gray);
+  background: rgba(0,0,255,0.04);
   border-radius: 0 var(--radius) var(--radius) 0;
   font-style: italic;
   color: var(--blue);
@@ -191,7 +191,6 @@
 .message-inner h2 { color: var(--white); margin-bottom: var(--space-sm); }
 .message-body p   { color: rgba(255,255,255,0.8); font-size: var(--fs-md); }
 .message-body strong, .message-body em { color: var(--white); }
-.section-label--light { color: var(--white); }
 .message-actions {
   display: flex;
   flex-wrap: wrap;

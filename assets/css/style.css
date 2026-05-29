@@ -175,6 +175,8 @@ strong { color: var(--black); }
   margin-bottom: var(--space-xs);
 }
 
+.section-label--light { color: var(--white); }
+
 .section-title {
   margin-bottom: var(--space-xs);
 }
@@ -360,6 +362,7 @@ strong { color: var(--black); }
 .badge-red   { background: rgba(255,0,0,0.1);  color: var(--red); }
 .badge-blue  { background: rgba(0,0,255,0.1);   color: var(--blue); }
 .badge-green { background: rgba(37,211,102,0.1); color: #1a9e4a; }
+.badge-gray  { background: rgba(0,0,139,0.06);  color: var(--gray-text); }
 
 /* ── Visually Hidden (Accessibility) ──────────────────────── */
 .sr-only {

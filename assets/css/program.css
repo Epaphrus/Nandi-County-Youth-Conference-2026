@@ -75,9 +75,6 @@
 }
 
 .day-panel-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-md);
   border-bottom: 2px solid var(--gray-mid);
@@ -182,9 +179,9 @@
 .timeline-icon.sermon   { background: var(--blue); }
 .timeline-icon.prayer   { background: var(--red); }
 .timeline-icon.worship  { background: var(--success); }
-.timeline-icon.workshop { background: var(--info-border); }
+.timeline-icon.workshop { background: var(--blue-dark); }
 .timeline-icon.ceremony { background: var(--blue); }
-.timeline-icon.logistics{ background: var(--black); }
+.timeline-icon.logistics{ background: var(--gray-text); }
 
 .timeline-info {
   flex: 1;
@@ -206,6 +203,49 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
+}
+
+/* ── Programme section heading ─────────────────────────────── */
+.programme-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+/* ── Day tab theme line ─────────────────────────────────────── */
+.tab-theme {
+  font-size: 0.65rem;
+  color: var(--gray-text);
+  transition: color var(--transition);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+  font-style: italic;
+}
+
+.day-tab.active .tab-theme {
+  color: rgba(255,255,255,0.65);
+}
+
+/* ── Day theme badge in panel header ────────────────────────── */
+.day-theme-badge {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.2rem 0.7rem;
+  background: rgba(0,0,255,0.07);
+  color: var(--blue);
+  border-radius: 999px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* ── Empty state ────────────────────────────────────────────── */
+.programme-empty {
+  text-align: center;
+  padding: var(--space-xl) 0;
+  color: var(--gray-text);
+  font-size: var(--fs-md);
 }
 
 /* ── Legend ────────────────────────────────────────────────── */

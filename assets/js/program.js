@@ -1,6 +1,6 @@
 /* ============================================================
    NANDI COUNTY YOUTH CONFERENCE 2026
-   program.js — Renders day tabs and session accordion
+   program.js — Renders day tabs and session timeline
    ============================================================ */
 
 const SESSION_ICONS = {
@@ -25,16 +25,23 @@ function buildTabs() {
   const container = document.querySelector('.day-tabs');
   if (!container || typeof PROGRAM === 'undefined') return;
 
-  container.setAttribute('role', 'tablist');
   PROGRAM.forEach((day, i) => {
     const btn = document.createElement('button');
-    btn.className   = 'day-tab' + (i === 0 ? ' active' : '');
+    btn.className = 'day-tab' + (i === 0 ? ' active' : '');
     btn.setAttribute('role', 'tab');
     btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
     btn.setAttribute('aria-controls', `day-panel-${i}`);
     btn.setAttribute('id', `day-tab-${i}`);
     btn.setAttribute('tabindex', i === 0 ? '0' : '-1');
-    btn.innerHTML = `<span class="tab-day">${day.day}</span><span class="tab-date">${day.date.split(',')[1]?.trim() || ''}</span>`;
+
+    const datePart = day.date.split(',').slice(1).join(',').trim()
+      .replace(/\s+\d{4}$/, ''); // strip year → "10 August"
+
+    btn.innerHTML = `
+      <span class="tab-day">${day.day}</span>
+      <span class="tab-date">${datePart}</span>
+      <span class="tab-theme">${day.theme}</span>
+    `;
     btn.addEventListener('click', () => showDay(i));
     container.appendChild(btn);
   });
@@ -44,25 +51,26 @@ function buildDayPanels() {
   const content = document.getElementById('programme-content');
   if (!content || typeof PROGRAM === 'undefined') return;
 
+  content.innerHTML = ''; // clear loading placeholder
+
   PROGRAM.forEach((day, di) => {
     const panel = document.createElement('div');
-    panel.id    = `day-panel-${di}`;
+    panel.id        = `day-panel-${di}`;
     panel.className = 'day-panel' + (di === 0 ? ' active' : '');
     panel.setAttribute('role', 'tabpanel');
     panel.setAttribute('aria-labelledby', `day-tab-${di}`);
     panel.setAttribute('tabindex', '0');
 
     panel.innerHTML = `
-      <div class="day-panel-header" data-aos="fade-up">
-        <div>
-          <h2 class="day-panel-title">${day.day}: ${day.theme}</h2>
-          <p class="day-panel-date">${day.date}</p>
-        </div>
+      <div class="day-panel-header">
+        <h3 class="day-panel-title">${day.day}: ${day.theme}</h3>
+        <p class="day-panel-date">${day.date}</p>
+        <span class="day-theme-badge">${day.theme}</span>
       </div>
 
       <div class="timeline" role="list" aria-label="Sessions for ${day.day}">
         ${day.sessions.map((s, si) => `
-          <div class="timeline-item" data-aos="fade-up" data-aos-delay="${si * 60}" role="listitem">
+          <div class="timeline-item" role="listitem">
             <div class="timeline-time">
               <span>${s.time}</span>
             </div>
@@ -91,26 +99,23 @@ function buildDayPanels() {
 }
 
 function showDay(index) {
-  // Update tabs
   document.querySelectorAll('.day-tab').forEach((tab, i) => {
-    const isActive = i === index;
-    tab.classList.toggle('active', isActive);
-    tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-    tab.setAttribute('tabindex', isActive ? '0' : '-1');
+    const active = i === index;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+    tab.setAttribute('tabindex', active ? '0' : '-1');
   });
 
-  // Update panels
   document.querySelectorAll('.day-panel').forEach((panel, i) => {
     panel.classList.toggle('active', i === index);
   });
 
-  // Re-trigger AOS for newly visible items
+  // Re-initialise AOS after panel becomes visible
   if (typeof AOS !== 'undefined') {
-    setTimeout(() => AOS.refresh(), 50);
+    requestAnimationFrame(() => AOS.refreshHard());
   }
 }
 
-/* Keyboard navigation for tabs */
 function initTabKeyboard() {
   const tabs = document.querySelectorAll('.day-tab');
   tabs.forEach((tab, i) => {
@@ -127,6 +132,11 @@ function initTabKeyboard() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (typeof PROGRAM === 'undefined') {
+    const content = document.getElementById('programme-content');
+    if (content) content.innerHTML = '<p class="programme-empty">Programme details coming soon. Check back closer to the conference date.</p>';
+    return;
+  }
   buildTabs();
   buildDayPanels();
   initTabKeyboard();

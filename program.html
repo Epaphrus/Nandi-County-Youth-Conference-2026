@@ -55,14 +55,23 @@
     <section class="section bg-gray" aria-labelledby="schedule-heading">
       <div class="container">
 
+        <div class="programme-header" data-aos="fade-up">
+          <span class="section-label">Full Programme</span>
+          <h2 id="schedule-heading">Day-by-Day Schedule</h2>
+          <div class="divider centered"></div>
+          <p class="section-subtitle">Six days of revival — select a day to view its sessions.</p>
+        </div>
+
         <!-- Day Tab Buttons -->
-        <div class="day-tabs" role="tablist" aria-label="Conference days" data-aos="fade-up">
+        <div class="day-tabs" role="tablist" aria-label="Conference days">
           <!-- Rendered by program.js -->
         </div>
 
         <!-- Programme Cards -->
         <div id="programme-content" aria-live="polite">
-          <!-- Rendered by program.js -->
+          <p class="programme-empty">
+            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Loading programme&hellip;
+          </p>
         </div>
 
       </div>
@@ -76,7 +85,9 @@
           <div class="legend-items">
             <span class="badge badge-blue">Sermon / Teaching</span>
             <span class="badge badge-red">Prayer / Intercession</span>
-            <span class="badge badge-green">Worship / Logistics</span>
+            <span class="badge badge-green">Worship</span>
+            <span class="badge badge-gray">Workshop</span>
+            <span class="badge badge-gray">Ceremony / Logistics</span>
           </div>
         </div>
       </div>
@@ -86,14 +97,14 @@
     <section class="section cta-section" aria-labelledby="prog-cta-heading">
       <div class="container">
         <div class="cta-inner" data-aos="fade-up">
-          <span class="section-label" style="color:var(--white);">Don't Miss It</span>
+          <span class="section-label section-label--light">Don't Miss It</span>
           <h2 id="prog-cta-heading">Reserve Your Place Today</h2>
           <p>Registration is free. Come prepared for a life-changing encounter with God.</p>
           <div class="cta-actions">
             <a href="registration.html" class="btn btn-primary btn-lg">
               <i class="fas fa-user-plus" aria-hidden="true"></i> Register Now
             </a>
-            <a href="https://wa.me/254700000000" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
+            <a href="https://wa.me/254700000000" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">
               <i class="fab fa-whatsapp" aria-hidden="true"></i> Join WhatsApp
             </a>
           </div>

@@ -458,12 +458,6 @@
   color: var(--white);
 }
 
-.about-cta-call {
-  font-size: var(--fs-lg) !important;
-  color: var(--white) !important;
-  margin-bottom: var(--space-lg) !important;
-}
-
 .about-cta-inner .btn {
   margin-top: var(--space-sm);
 }

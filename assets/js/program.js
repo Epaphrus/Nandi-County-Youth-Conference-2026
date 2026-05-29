@@ -4,7 +4,7 @@
    ============================================================ */
 
 const SESSION_ICONS = {
-  sermon:   'fa-bible',
+  sermon:   'fa-book-bible',
   prayer:   'fa-hands-praying',
   worship:  'fa-music',
   workshop: 'fa-users',

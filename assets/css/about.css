@@ -129,11 +129,26 @@
   .conference-split { grid-template-columns: 1fr 1fr; }
 }
 
-.conference-text p {
+.conference-answer {
+  margin-bottom: var(--space-md);
+}
+
+.conference-answer-q {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--fs-sm);
+  font-weight: 900;
+  color: var(--blue);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.conference-answer p {
   font-size: var(--fs-base);
   color: var(--black);
   line-height: 1.8;
-  margin-bottom: var(--space-sm);
+  margin: 0;
 }
 
 .scripture-quote {

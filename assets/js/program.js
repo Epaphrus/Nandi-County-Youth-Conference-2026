@@ -3,15 +3,6 @@
    program.js — Renders day tabs and session timeline
    ============================================================ */
 
-const SESSION_ICONS = {
-  sermon:   'fa-book-bible',
-  prayer:   'fa-hands-praying',
-  worship:  'fa-music',
-  workshop: 'fa-users',
-  ceremony: 'fa-star',
-  logistics:'fa-clipboard-list',
-};
-
 const SESSION_LABELS = {
   sermon:   'Sermon / Teaching',
   prayer:   'Prayer',
@@ -77,12 +68,9 @@ function buildDayPanels() {
             <div class="timeline-dot" aria-hidden="true"></div>
             <div class="timeline-card">
               <div class="timeline-card-header">
-                <div class="timeline-icon ${s.type}" aria-hidden="true">
-                  <i class="fas ${SESSION_ICONS[s.type] || 'fa-circle'}"></i>
-                </div>
                 <div class="timeline-info">
                   <h4>${s.title}</h4>
-                  ${s.speaker && !s.speaker.includes('[') ? `<p class="timeline-speaker"><i class="fas fa-microphone" aria-hidden="true"></i> ${s.speaker}</p>` : ''}
+                  ${s.speaker && !s.speaker.includes('[') ? `<p class="timeline-speaker">${s.speaker}</p>` : ''}
                 </div>
               </div>
             </div>

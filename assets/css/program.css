@@ -166,25 +166,6 @@
   flex-wrap: wrap;
 }
 
-.timeline-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-
-.timeline-icon.sermon   { background: var(--blue); }
-.timeline-icon.prayer   { background: var(--red); }
-.timeline-icon.worship  { background: var(--success); }
-.timeline-icon.workshop { background: var(--blue-dark); }
-.timeline-icon.ceremony { background: var(--blue); }
-.timeline-icon.logistics{ background: var(--gray-text); }
-
 .timeline-info {
   flex: 1;
   min-width: 0;

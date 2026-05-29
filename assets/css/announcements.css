@@ -120,7 +120,7 @@
   gap: var(--space-md);
 }
 .ann-subscribe-card {
-  background: #075e54;
+  background: var(--whatsapp-dark);
   color: var(--white);
   border-radius: var(--radius-lg);
   padding: var(--space-md);

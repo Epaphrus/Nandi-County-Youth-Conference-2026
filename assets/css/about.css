@@ -67,8 +67,8 @@
 .vision-stat-card span  { font-size: var(--fs-xs); color: var(--gray-text); }
 .vision-stat-1 i { color: var(--red); }
 .vision-stat-2 i { color: var(--blue); }
-.vision-stat-3 i { color: #1565c0; }
-.vision-stat-4 i { color: #6a1b9a; }
+.vision-stat-3 i { color: var(--blue); }
+.vision-stat-4 i { color: var(--blue); }
 
 /* ── Purpose grid ──────────────────────────────────────────── */
 .purpose-grid {
@@ -91,7 +91,7 @@
 .purpose-number {
   font-family: var(--font-heading);
   font-size: var(--fs-3xl);
-  color: rgba(0,0,255,0.07);
+  color: rgba(0,0,255,0.13);
   font-weight: 900;
   line-height: 1;
   margin-bottom: 0.25rem;
@@ -121,7 +121,7 @@
   font-size: var(--fs-sm);
   color: var(--black);
 }
-.objectives-list li i { color: #2e7d32; margin-top: 3px; flex-shrink: 0; }
+.objectives-list li i { color: var(--success); margin-top: 3px; flex-shrink: 0; }
 
 .impact-card {
   background: var(--blue);
@@ -143,7 +143,7 @@
 }
 .impact-stat {
   text-align: center;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.15);
   border-radius: var(--radius);
   padding: var(--space-sm);
 }
@@ -191,6 +191,14 @@
 .message-inner h2 { color: var(--white); margin-bottom: var(--space-sm); }
 .message-body p   { color: rgba(255,255,255,0.8); font-size: var(--fs-md); }
 .message-body strong, .message-body em { color: var(--white); }
+.section-label--light { color: var(--white); }
+.message-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-top: var(--space-lg);
+}
 
 /* ── Ministry ──────────────────────────────────────────────── */
 .ministry-layout {

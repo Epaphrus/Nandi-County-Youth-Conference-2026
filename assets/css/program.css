@@ -181,10 +181,10 @@
 
 .timeline-icon.sermon   { background: var(--blue); }
 .timeline-icon.prayer   { background: var(--red); }
-.timeline-icon.worship  { background: #2e7d32; }
-.timeline-icon.workshop { background: #1565c0; }
-.timeline-icon.ceremony { background: #6a1b9a; }
-.timeline-icon.logistics{ background: #37474f; }
+.timeline-icon.worship  { background: var(--success); }
+.timeline-icon.workshop { background: var(--info-border); }
+.timeline-icon.ceremony { background: var(--blue); }
+.timeline-icon.logistics{ background: var(--black); }
 
 .timeline-info {
   flex: 1;

@@ -683,7 +683,7 @@
 
 /* ── WHATSAPP BANNER ───────────────────────────────────────── */
 .whatsapp-banner {
-  background: #075e54;
+  background: var(--whatsapp-dark);
   padding: var(--space-md) 0;
 }
 
@@ -933,8 +933,8 @@
 }
 
 .form-control.success {
-  border-color: #2e7d32;
-  box-shadow: 0 0 0 3px rgba(46,125,50,0.1);
+  border-color: var(--success);
+  box-shadow: 0 0 0 3px rgba(0,128,0,0.1);
 }
 
 .form-error {
@@ -1054,21 +1054,21 @@ select.form-control {
 }
 
 .alert-success {
-  background: #e8f5e9;
-  color: #1b5e20;
-  border-left: 4px solid #2e7d32;
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-left: 4px solid var(--success);
 }
 
 .alert-error {
-  background: #ffebee;
-  color: #b71c1c;
+  background: var(--error-bg);
+  color: var(--error);
   border-left: 4px solid var(--red);
 }
 
 .alert-info {
-  background: #e3f2fd;
-  color: #0d47a1;
-  border-left: 4px solid #1565c0;
+  background: var(--info-bg);
+  color: var(--info-text);
+  border-left: 4px solid var(--info-border);
 }
 
 .alert i {

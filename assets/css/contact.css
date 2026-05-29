@@ -69,7 +69,7 @@
 }
 
 .wa-contact-link:hover {
-  background: #e8f5e9;
+  background: var(--success-bg);
   transform: translateX(4px);
 }
 

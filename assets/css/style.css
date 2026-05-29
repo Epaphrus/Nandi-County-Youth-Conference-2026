@@ -17,6 +17,19 @@
   --gray-mid:   #C8C8FF;
   --gray-text:  #00008B;
 
+  /* Semantic / UI Colors */
+  --success:        #2e7d32;
+  --success-bg:     #e8f5e9;
+  --success-text:   #1b5e20;
+  --error:          #b71c1c;
+  --error-bg:       #ffebee;
+  --info-bg:        #e3f2fd;
+  --info-text:      #0d47a1;
+  --info-border:    #1565c0;
+  --whatsapp:       #25D366;
+  --whatsapp-hover: #1eb855;
+  --whatsapp-dark:  #075e54;
+
   /* Typography */
   --font-heading: 'Lato', system-ui, sans-serif;
   --font-body:    'Open Sans', system-ui, sans-serif;
@@ -258,13 +271,13 @@ strong { color: var(--black); }
 }
 
 .btn-whatsapp {
-  background: #25D366;
+  background: var(--whatsapp);
   color: var(--white);
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 
 .btn-whatsapp:hover {
-  background: #1eb855;
+  background: var(--whatsapp-hover);
   box-shadow: 0 6px 24px rgba(0,0,0,0.2);
 }
 

@@ -28,8 +28,8 @@
   animation: pulse-red 1.5s infinite;
 }
 @keyframes pulse-red {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(244,67,54,0.5); }
-  50%       { box-shadow: 0 0 0 6px rgba(244,67,54,0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,0,0,0.5); }
+  50%       { box-shadow: 0 0 0 6px rgba(255,0,0,0); }
 }
 
 /* ── Main layout ───────────────────────────────────────────── */
@@ -73,7 +73,7 @@
   overflow: hidden;
   position: relative;
   padding-top: 56.25%; /* 16:9 */
-  background: #000;
+  background: var(--black);
 }
 .ls-embed-wrap iframe {
   position: absolute;
@@ -203,7 +203,7 @@
   gap: 0.5rem;
   font-size: var(--fs-sm);
 }
-.ls-chat-tips li i { color: #2e7d32; margin-top: 3px; font-size: 0.75rem; flex-shrink: 0; }
+.ls-chat-tips li i { color: var(--success); margin-top: 3px; font-size: 0.75rem; flex-shrink: 0; }
 
 /* ── Schedule ──────────────────────────────────────────────── */
 .ls-schedule-grid {

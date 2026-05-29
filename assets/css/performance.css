@@ -12,6 +12,10 @@
   font-family: 'Open Sans';
   font-display: swap;
 }
+@font-face {
+  font-family: 'Lora';
+  font-display: swap;
+}
 
 /* ── Lazy-loaded images ────────────────────────────────────── */
 img[loading="lazy"] {

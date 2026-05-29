@@ -312,9 +312,12 @@
 }
 
 .hero-title {
+  font-size: clamp(2rem, 6vw, var(--fs-4xl));
   color: var(--blue);
   margin-bottom: var(--space-sm);
   text-shadow: none;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-year {
@@ -322,22 +325,33 @@
   display: inline-block;
 }
 
+/* Red divider between title and scripture quote */
+.hero-title-divider {
+  width: 56px;
+  height: 3px;
+  background: var(--red);
+  border-radius: 2px;
+  margin: var(--space-sm) 0;
+}
+
 .hero-theme {
-  font-family: var(--font-heading);
-  font-size: clamp(var(--fs-base), 2.2vw, var(--fs-lg));
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(var(--fs-base), 2vw, var(--fs-lg));
   color: var(--black);
   font-style: italic;
   margin-bottom: var(--space-md);
-  max-width: 600px;
+  max-width: 580px;
+  line-height: 1.6;
 }
 
 .hero-scripture {
   display: block;
   font-size: 0.75em;
-  opacity: 0.55;
-  margin-top: 0.25rem;
   font-style: normal;
-  letter-spacing: 0.05em;
+  opacity: 0.55;
+  margin-top: 0.35rem;
+  letter-spacing: 0.06em;
+  font-family: var(--font-body);
 }
 
 .hero-meta {

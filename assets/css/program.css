@@ -19,7 +19,7 @@
   padding: 0.65rem 1rem;
   border-radius: var(--radius);
   border: 2px solid var(--gray-mid);
-  background: var(--white);
+  background: var(--gray);
   cursor: pointer;
   transition: all var(--transition);
   min-width: 90px;

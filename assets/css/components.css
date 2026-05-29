@@ -10,9 +10,16 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: var(--blue);
-  box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+  background: var(--white);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  box-shadow: none;
   padding: 0.75rem 0;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Shadow appears only after user scrolls */
+.navbar.scrolled {
+  box-shadow: 0 1px 12px rgba(0,0,0,0.08);
 }
 
 .navbar .container {
@@ -40,13 +47,13 @@
   font-family: var(--font-heading);
   font-size: var(--fs-sm);
   font-weight: 700;
-  color: var(--white);
+  color: var(--blue);
   letter-spacing: 0.05em;
 }
 
 .navbar-logo-sub {
   font-size: var(--fs-xs);
-  color: rgba(255,255,255,0.7);
+  color: rgba(0,0,0,0.4);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -71,7 +78,6 @@
   flex-shrink: 0;
   border-radius: 50%;
   background: transparent;
-  filter: brightness(1.08);
 }
 
 .footer-logo-img {
@@ -90,7 +96,7 @@
   position: relative;
   font-size: var(--fs-sm);
   font-weight: 500;
-  color: rgba(255,255,255,0.85);
+  color: rgba(0,0,0,0.6);
   padding: 0.4rem 0.65rem;
   min-height: 44px;
   display: flex;
@@ -116,7 +122,7 @@
 }
 
 .navbar-menu a:hover {
-  color: var(--white);
+  color: var(--black);
 }
 
 .navbar-menu a:hover::after {
@@ -124,7 +130,8 @@
 }
 
 .navbar-menu a.active {
-  color: var(--white);
+  color: var(--blue);
+  font-weight: 600;
 }
 
 .navbar-menu a.active::after {
@@ -153,7 +160,7 @@
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--white);
+  background: var(--black);
   border-radius: 2px;
   transition: transform var(--transition), opacity var(--transition);
 }
@@ -178,14 +185,14 @@
     right: -100%;
     width: min(300px, 82vw);
     height: 100vh;
-    background: rgba(0,0,204,0.97);
-    border-left: 3px solid var(--red);
+    background: var(--white);
+    border-left: 1px solid rgb(0, 4, 255);
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
     padding: 4.5rem var(--space-lg) var(--space-lg);
     transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -8px 0 32px rgba(0,0,0,0.45);
+    box-shadow: -8px 0 32px rgba(0,0,0,0.1);
     overflow-y: auto;
   }
 
@@ -202,20 +209,24 @@
     width: 100%;
     padding: 0.85rem 1rem;
     font-size: var(--fs-base);
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    color: rgba(0,0,0,0.7);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
     border-radius: 0;
     border-left: 3px solid transparent;
     transition: color var(--transition), border-left-color var(--transition), background var(--transition);
   }
 
   .navbar-menu a:hover {
-    background: rgba(255,255,255,0.06);
-    border-left-color: rgba(255,0,0,0.4);
+    color: var(--black);
+    background: rgba(0,0,0,0.02);
+    border-left-color: rgba(255,0,0,0.3);
   }
 
   .navbar-menu a.active {
+    color: var(--blue);
+    font-weight: 600;
     border-left-color: var(--red);
-    background: rgba(255,0,0,0.1);
+    background: rgba(0,0,255,0.03);
   }
 
   .navbar-cta {

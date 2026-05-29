@@ -298,7 +298,6 @@
 .hero-tag {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
   background: var(--blue);
   border: none;
   color: var(--white);

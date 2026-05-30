@@ -47,7 +47,7 @@
 }
 
 /* ── Placeholder fills entire card ── */
-.speaker-img-placeholder {
+.speaker-card-full .speaker-img-placeholder {
   position: absolute;
   inset: 0;
   background: linear-gradient(160deg, #0a0f1e 0%, var(--blue) 100%);
@@ -145,3 +145,19 @@
 }
 .speakers-tba-note p { margin: 0; }
 .speakers-tba-note a { color: var(--blue); font-weight: 600; text-decoration: underline; }
+
+/* ── Tablet: force 2-col to avoid orphaned cards ── */
+@media (min-width: 641px) and (max-width: 900px) {
+  .speakers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Mobile: always show bio (no hover on touch) ── */
+@media (max-width: 640px) {
+  .speaker-card-bio {
+    opacity: 1;
+    transform: none;
+    -webkit-line-clamp: unset;
+  }
+}

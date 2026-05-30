@@ -13,7 +13,7 @@ const SPEAKERS = [
     name: "Dab Mama Lumala",
     role: "Guest Speaker",
     bio: "Anointed minister carrying a message of repentance, holiness, and consecration to the next generation.",
-    image: null,
+    image: "assets/images/speakers/Linet_Lumala.webp",
     featured: true,
   },
   {

@@ -607,23 +607,6 @@
   box-shadow: var(--shadow-md);
 }
 
-.speaker-img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  background: var(--gray);
-}
-
-.speaker-img-placeholder {
-  width: 100%;
-  aspect-ratio: 1;
-  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255,255,255,0.3);
-  font-size: 4rem;
-}
 
 .speaker-info {
   padding: var(--space-md);
@@ -648,45 +631,6 @@
   margin: 0;
 }
 
-/* ── SPEAKERS FULL-WIDTH GRID ──────────────────────────────── */
-.speakers-full-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  width: 100%;
-  margin-top: var(--space-lg);
-}
-
-.speakers-full-grid .speaker-card {
-  border-radius: 0;
-  box-shadow: none;
-  border-right: 1px solid rgba(0,0,0,0.06);
-}
-
-.speakers-full-grid .speaker-card:last-child {
-  border-right: none;
-}
-
-@media (max-width: 1024px) {
-  .speakers-full-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .speakers-full-grid .speaker-card:nth-child(2n) {
-    border-right: none;
-  }
-  .speakers-full-grid .speaker-card {
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-  }
-}
-
-@media (max-width: 480px) {
-  .speakers-full-grid {
-    grid-template-columns: 1fr;
-  }
-  .speakers-full-grid .speaker-card {
-    border-right: none;
-  }
-}
 
 /* ── PROGRAMME TABS ────────────────────────────────────────── */
 .prog-tabs {

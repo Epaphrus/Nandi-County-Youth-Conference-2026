@@ -204,15 +204,6 @@ p a, li a, .footer-links a, .ann-card-body a,
   .section-lg { padding: var(--space-xl) 0; }
 }
 
-/* ── Speak inquiry: stack on mobile ─────────────────────────── */
-@media (max-width: 640px) {
-  .speak-inquiry {
-    flex-direction: column;
-    text-align: center;
-  }
-  .speak-inquiry-icon { margin: 0 auto; }
-  .speak-inquiry .btn { width: 100%; justify-content: center; }
-}
 
 /* ── Livestream schedule: 1-col on mobile ───────────────────── */
 @media (max-width: 640px) {

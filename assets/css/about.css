@@ -253,10 +253,13 @@
   overflow: hidden;
 }
 
-.voice-avatar i {
+.voice-initials {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 900;
   color: var(--blue);
-  opacity: 0.5;
-  font-size: 1.1rem;
+  opacity: 0.6;
+  letter-spacing: 0.04em;
 }
 
 .voice-avatar img {
@@ -362,48 +365,6 @@
   margin: 0;
 }
 
-
-/* ── 6. What to Expect ─────────────────────────────────────── */
-.expect-grid {
-  display: grid;
-  gap: var(--space-md);
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  margin-bottom: 0;
-}
-
-.expect-item {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: var(--space-md);
-  box-shadow: var(--shadow-sm);
-  border-left: 4px solid var(--blue);
-  transition: border-color var(--transition), transform var(--transition);
-}
-
-.expect-item:hover {
-  border-color: var(--red);
-  transform: translateY(-4px);
-}
-
-.expect-num {
-  font-family: var(--font-heading);
-  font-size: var(--fs-3xl);
-  font-weight: 900;
-  color: rgba(0,0,255,0.1);
-  line-height: 1;
-  margin-bottom: 0.25rem;
-}
-
-.expect-item h4 {
-  font-size: var(--fs-md);
-  margin-bottom: 0.5rem;
-}
-
-.expect-item p {
-  font-size: var(--fs-sm);
-  margin: 0;
-  line-height: 1.7;
-}
 
 
 

@@ -9,26 +9,120 @@
   margin-bottom: var(--space-lg);
 }
 
+/* ── Card shell ── */
 .speaker-card-full {
-  background: var(--white);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition), box-shadow var(--transition);
   position: relative;
+  aspect-ratio: 3 / 4;
+  cursor: default;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
+
 .speaker-card-full:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Photo fills entire card ── */
+.speaker-card-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .speaker-card-img {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: 100%;
   object-fit: cover;
   display: block;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
+.speaker-card-img.loaded {
+  opacity: 1;
+}
+
+/* ── Placeholder fills entire card ── */
+.speaker-img-placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #0a0f1e 0%, var(--blue) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.12);
+  font-size: 6rem;
+}
+
+/* ── Gradient overlay — darkens bottom for text legibility ── */
+.speaker-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 25%,
+    rgba(0,0,0,0.25) 55%,
+    rgba(0,0,0,0.88) 100%
+  );
+  transition: opacity var(--transition);
+}
+
+.speaker-card-full:hover .speaker-card-overlay {
+  opacity: 0.7;
+}
+
+/* ── Text over the overlay ── */
+.speaker-card-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  z-index: 1;
+}
+
+.speaker-card-name {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.2;
+  margin: 0 0 0.25rem;
+}
+
+.speaker-card-role {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin: 0 0 var(--space-sm);
+}
+
+.speaker-card-bio {
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.speaker-card-full:hover .speaker-card-bio {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Empty state ── */
 .speakers-empty {
   text-align: center;
   color: var(--gray-text);
@@ -37,26 +131,7 @@
   grid-column: 1 / -1;
 }
 
-.speaker-card-full .speaker-img-placeholder {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255,255,255,0.25);
-  font-size: 5rem;
-}
-
-.speaker-card-body {
-  padding: var(--space-md);
-  text-align: center;
-}
-.speaker-card-name { font-size: var(--fs-lg); margin-bottom: 0.25rem; }
-.speaker-card-role { color: var(--red); font-weight: 600; font-size: var(--fs-sm); margin-bottom: var(--space-sm); }
-.speaker-card-bio  { font-size: var(--fs-sm); color: var(--gray-text); line-height: 1.7; margin: 0; }
-
-/* TBA note */
+/* ── TBA note ── */
 .speakers-tba-note {
   display: flex;
   align-items: center;
@@ -68,6 +143,5 @@
   color: var(--gray-text);
   font-size: var(--fs-sm);
 }
-.speakers-tba-note p  { margin: 0; }
-.speakers-tba-note a  { color: var(--blue); font-weight: 600; text-decoration: underline; }
-
+.speakers-tba-note p { margin: 0; }
+.speakers-tba-note a { color: var(--blue); font-weight: 600; text-decoration: underline; }

@@ -9,9 +9,10 @@ function renderSpeakers() {
 
   grid.innerHTML = SPEAKERS.map((s, i) => `
     <article class="speaker-card" data-aos="fade-up" data-aos-delay="${i * 80}" aria-label="${s.name}, ${s.role}">
-      <div class="speaker-img-placeholder" aria-hidden="true">
-        <i class="fas fa-user"></i>
-      </div>
+      ${s.image
+        ? `<img src="${s.image}" alt="${s.name}" class="speaker-card-img" loading="lazy" onload="this.classList.add('loaded')" />`
+        : `<div class="speaker-img-placeholder" aria-hidden="true"><i class="fas fa-user"></i></div>`
+      }
       <div class="speaker-info">
         <h4>${s.name}</h4>
         <p class="speaker-role">${s.role}</p>

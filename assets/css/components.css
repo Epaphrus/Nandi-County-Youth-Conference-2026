@@ -592,45 +592,6 @@
   margin: 0;
 }
 
-/* ── SPEAKER CARDS ─────────────────────────────────────────── */
-.speaker-card {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition), box-shadow var(--transition);
-  text-align: center;
-}
-
-.speaker-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
-}
-
-
-.speaker-info {
-  padding: var(--space-md);
-}
-
-.speaker-info h4 {
-  font-size: var(--fs-md);
-  margin-bottom: 0.25rem;
-}
-
-.speaker-role {
-  font-size: var(--fs-sm);
-  color: var(--red);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.speaker-bio {
-  font-size: var(--fs-sm);
-  color: var(--gray-text);
-  line-height: 1.6;
-  margin: 0;
-}
-
 
 /* ── PROGRAMME TABS ────────────────────────────────────────── */
 .prog-tabs {
@@ -844,6 +805,9 @@
 .section-text-link:hover {
   gap: 0.7rem;
 }
+
+.section-link-row    { margin-top: var(--space-lg); }
+.section-link-row--xl { margin-top: var(--space-xl); }
 
 /* ── ABOUT FULL-WIDTH ──────────────────────────────────────── */
 /* ── ABOUT SPLIT ───────────────────────────────────────────── */

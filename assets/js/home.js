@@ -80,9 +80,8 @@ function renderProgrammeTabs() {
             <span class="prog-session-time">${s.time}</span>
             <div class="prog-session-info">
               <h5>${s.title}</h5>
-              ${s.speaker ? `<p>${s.speaker}</p>` : ''}
+              ${s.speaker && !s.speaker.includes('[') ? `<p>${s.speaker}</p>` : ''}
             </div>
-            <span class="prog-session-badge prog-badge-${s.type}">${s.type}</span>
           </div>
         `).join('')}
       </div>

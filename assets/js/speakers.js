@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   grid.innerHTML = SPEAKERS.map((s, i) => `
-    <article class="speaker-card-full" data-aos="fade-up" data-aos-delay="${i * 80}" aria-label="${s.name}, ${s.role}">
+    <article class="speaker-card-full" data-aos="fade-up" data-aos-delay="${Math.min(i, 3) * 80}" aria-label="${s.name}, ${s.role}">
       <div class="speaker-card-photo">
         ${s.image
           ? `<img src="${s.image}" alt="${s.name}" class="speaker-card-img" loading="lazy" onload="this.classList.add('loaded')" />`

@@ -2,7 +2,7 @@
 const SPEAKERS = [
   {
     id: 1,
-    name: "SNR DAB JUSTIN LANGAT",
+    name: "Snr Dab Justin Langat",
     role: "Keynote Speaker",
     bio: "A servant of THE LORD with a powerful ministry in revival, repentance, and youth transformation across Kenya.",
     image: "assets/images/speakers/SDAB Justin Langat.jpg",
@@ -10,7 +10,7 @@ const SPEAKERS = [
   },
   {
     id: 2,
-    name: "DAB MAMA LUMALA",
+    name: "Dab Mama Lumala",
     role: "Guest Speaker",
     bio: "Anointed minister carrying a message of repentance, holiness, and consecration to the next generation.",
     image: null,
@@ -26,7 +26,7 @@ const SPEAKERS = [
   },
   {
     id: 4,
-    name: "DAB JOHN KOSGEI",
+    name: "Dab John Kosgei",
     role: "Host Bishop",
     bio: "Passionate about discipleship and mobilizing the youth of Nandi County for revival.",
     image: null,
@@ -34,23 +34,15 @@ const SPEAKERS = [
   },
   {
     id: 5,
-    name: "DAB ELIUD CHEBOS",
+    name: "Dab Eliud Chebos",
     role: "Guest Speaker",
     bio: "Anointed minister of the Word carrying a message of repentance and holiness to this generation.",
     image: null,
     featured: false,
   },
   {
-    id: 8,
-    name: "DAB ALFRED LEL",
-    role: "Guest Speaker",
-    bio: "Servant of THE LORD with a powerful anointing for revival and the mobilization of youth toward consecrated living.",
-    image: null,
-    featured: false,
-  },
-  {
     id: 6,
-    name: "BISHOP DANIEL KOECH",
+    name: "Bishop Daniel Koech",
     role: "Guest Speaker",
     bio: "A servant of THE LORD called to preach the uncompromising Gospel of repentance and consecration.",
     image: null,
@@ -58,9 +50,17 @@ const SPEAKERS = [
   },
   {
     id: 7,
-    name: "BISHOP ELIZABETH GOREN",
+    name: "Bishop Elizabeth Goren",
     role: "Guest Speaker",
     bio: "Minister of GOD carrying a burning message of holiness and preparation for the coming of THE LORD JESUS CHRIST.",
+    image: null,
+    featured: false,
+  },
+  {
+    id: 8,
+    name: "Dab Alfred Lel",
+    role: "Guest Speaker",
+    bio: "Servant of THE LORD with a powerful anointing for revival and the mobilization of youth toward consecrated living.",
     image: null,
     featured: false,
   },

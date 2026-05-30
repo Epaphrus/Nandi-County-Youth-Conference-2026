@@ -69,7 +69,6 @@
   color: var(--gray-text);
   font-size: var(--fs-sm);
 }
-.speakers-tba-note i  { font-size: 1.5rem; color: var(--blue); flex-shrink: 0; }
 .speakers-tba-note p  { margin: 0; }
 .speakers-tba-note a  { color: var(--blue); font-weight: 600; text-decoration: underline; }
 
@@ -82,18 +81,6 @@
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   flex-wrap: wrap;
-}
-.speak-inquiry-icon {
-  width: 80px;
-  height: 80px;
-  background: var(--blue);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-  font-size: 2rem;
-  flex-shrink: 0;
 }
 .speak-inquiry-text { flex: 1; min-width: 200px; }
 .speak-inquiry-text h3 { margin-bottom: 0.4rem; }

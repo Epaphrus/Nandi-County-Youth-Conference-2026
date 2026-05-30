@@ -4,9 +4,14 @@
 
 .speakers-grid {
   display: grid;
-  gap: var(--space-md);
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0 var(--space-sm);
   margin-bottom: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .speakers-grid { padding: 0 var(--space-lg); }
 }
 
 /* ── Card shell ── */
@@ -16,13 +21,25 @@
   position: relative;
   aspect-ratio: 3 / 4;
   cursor: default;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .speaker-card-full:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+}
+
+/* ── Keynote accent: thin blue bar at top ── */
+.speaker-card-full--keynote::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--blue);
+  z-index: 2;
 }
 
 /* ── Photo fills entire card ── */
@@ -37,42 +54,58 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
 }
 
 .speaker-card-img.loaded {
   opacity: 1;
 }
 
-/* ── Placeholder fills entire card ── */
+/* ── Placeholder: dignified dark gradient with initials ── */
 .speaker-card-full .speaker-img-placeholder {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, #0a0f1e 0%, var(--blue) 100%);
+  background: linear-gradient(160deg, #0d1533 0%, #0000cc 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.speaker-initials {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.12);
-  font-size: 6rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.05em;
 }
 
-/* ── Gradient overlay — darkens bottom for text legibility ── */
+/* ── Gradient overlay ── */
 .speaker-card-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    transparent 25%,
-    rgba(0,0,0,0.25) 55%,
-    rgba(0,0,0,0.88) 100%
+    transparent 20%,
+    rgba(0,0,0,0.15) 50%,
+    rgba(0,0,0,0.92) 100%
   );
   transition: opacity var(--transition);
 }
 
 .speaker-card-full:hover .speaker-card-overlay {
-  opacity: 0.7;
+  opacity: 0.72;
 }
 
 /* ── Text over the overlay ── */
@@ -81,46 +114,29 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: var(--space-lg) var(--space-md) var(--space-md);
+  padding: 2rem var(--space-md) var(--space-md);
   z-index: 1;
 }
 
 .speaker-card-name {
   font-family: var(--font-heading);
-  font-size: var(--fs-lg);
+  font-size: var(--fs-xl);
   font-weight: 900;
   color: var(--white);
-  line-height: 1.2;
-  margin: 0 0 0.25rem;
+  line-height: 1.15;
+  margin: 0 0 0.4rem;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 .speaker-card-role {
   font-size: var(--fs-xs);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.85);
   margin: 0 0 var(--space-sm);
 }
 
-.speaker-card-bio {
-  font-size: var(--fs-sm);
-  color: rgba(255,255,255,0.8);
-  line-height: 1.6;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity var(--transition), transform var(--transition);
-}
-
-.speaker-card-full:hover .speaker-card-bio {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 /* ── Empty state ── */
 .speakers-empty {
@@ -133,6 +149,7 @@
 
 /* ── TBA note ── */
 .speakers-tba-note {
+  margin-top: var(--space-lg);
   display: flex;
   align-items: center;
   gap: var(--space-sm);
@@ -147,17 +164,15 @@
 .speakers-tba-note a { color: var(--blue); font-weight: 600; text-decoration: underline; }
 
 /* ── Tablet: force 2-col to avoid orphaned cards ── */
-@media (min-width: 641px) and (max-width: 900px) {
+@media (max-width: 1024px) {
+  .speakers-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
   .speakers-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* ── Mobile: always show bio (no hover on touch) ── */
-@media (max-width: 640px) {
-  .speaker-card-bio {
-    opacity: 1;
-    transform: none;
-    -webkit-line-clamp: unset;
-  }
-}

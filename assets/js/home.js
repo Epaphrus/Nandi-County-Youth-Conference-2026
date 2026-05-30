@@ -3,23 +3,41 @@
    home.js — Homepage dynamic rendering (speakers + programme)
    ============================================================ */
 
+function getInitials(name) {
+  const words = name.replace(/^(Snr|Dab|Bishop|Dr\.?)\s+/gi, '').trim().split(/\s+/);
+  return words.slice(0, 2).map(w => w[0].toUpperCase()).join('');
+}
+
 function renderSpeakers() {
   const grid = document.getElementById('speakers-grid');
   if (!grid || typeof SPEAKERS === 'undefined') return;
 
-  grid.innerHTML = SPEAKERS.map((s, i) => `
-    <article class="speaker-card" data-aos="fade-up" data-aos-delay="${i * 80}" aria-label="${s.name}, ${s.role}">
-      ${s.image
-        ? `<img src="${s.image}" alt="${s.name}" class="speaker-card-img" loading="lazy" onload="this.classList.add('loaded')" />`
-        : `<div class="speaker-img-placeholder" aria-hidden="true"><i class="fas fa-user"></i></div>`
-      }
-      <div class="speaker-info">
-        <h4>${s.name}</h4>
-        <p class="speaker-role">${s.role}</p>
-        <p class="speaker-bio">${s.bio}</p>
+  grid.innerHTML = SPEAKERS.slice(0, 4).map((s, i) => {
+    const isKeynote = s.role.toLowerCase().includes('keynote');
+    const initials  = getInitials(s.name);
+
+    return `
+    <article
+      class="speaker-card-full${isKeynote ? ' speaker-card-full--keynote' : ''}"
+      data-aos="fade-up"
+      data-aos-delay="${Math.min(i, 3) * 80}"
+      aria-label="${s.name}, ${s.role}"
+    >
+      <div class="speaker-card-photo">
+        ${s.image
+          ? `<img src="${s.image}" alt="${s.name}" class="speaker-card-img" loading="lazy" onload="this.classList.add('loaded')" />`
+          : `<div class="speaker-img-placeholder" aria-hidden="true">
+               <div class="speaker-initials">${initials}</div>
+             </div>`
+        }
       </div>
-    </article>
-  `).join('');
+      <div class="speaker-card-overlay" aria-hidden="true"></div>
+      <div class="speaker-card-body">
+        <h3 class="speaker-card-name">${s.name}</h3>
+        <p class="speaker-card-role">${s.role}</p>
+      </div>
+    </article>`;
+  }).join('');
 }
 
 function renderProgrammeTabs() {

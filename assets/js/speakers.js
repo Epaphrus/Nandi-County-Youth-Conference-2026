@@ -10,20 +10,35 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  grid.innerHTML = SPEAKERS.map((s, i) => `
-    <article class="speaker-card-full" data-aos="fade-up" data-aos-delay="${Math.min(i, 3) * 80}" aria-label="${s.name}, ${s.role}">
+  function getInitials(name) {
+    const words = name.replace(/^(Snr|Dab|Bishop|Dr\.?)\s+/gi, '').trim().split(/\s+/);
+    return words.slice(0, 2).map(w => w[0].toUpperCase()).join('');
+  }
+
+  grid.innerHTML = SPEAKERS.map((s, i) => {
+    const isKeynote = s.role.toLowerCase().includes('keynote');
+    const initials  = getInitials(s.name);
+
+    return `
+    <article
+      class="speaker-card-full${isKeynote ? ' speaker-card-full--keynote' : ''}"
+      data-aos="fade-up"
+      data-aos-delay="${Math.min(i, 3) * 80}"
+      aria-label="${s.name}, ${s.role}"
+    >
       <div class="speaker-card-photo">
         ${s.image
           ? `<img src="${s.image}" alt="${s.name}" class="speaker-card-img" loading="lazy" onload="this.classList.add('loaded')" />`
-          : `<div class="speaker-img-placeholder" aria-hidden="true"><i class="fas fa-user"></i></div>`
+          : `<div class="speaker-img-placeholder" aria-hidden="true">
+               <div class="speaker-initials">${initials}</div>
+             </div>`
         }
       </div>
       <div class="speaker-card-overlay" aria-hidden="true"></div>
       <div class="speaker-card-body">
         <h3 class="speaker-card-name">${s.name}</h3>
         <p class="speaker-card-role">${s.role}</p>
-        <p class="speaker-card-bio">${s.bio}</p>
       </div>
-    </article>
-  `).join('');
+    </article>`;
+  }).join('');
 });

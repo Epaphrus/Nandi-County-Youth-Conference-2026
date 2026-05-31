@@ -34,8 +34,9 @@
   }
 
   /* ── Lightbox ────────────────────────────────────────────── */
-  let currentIndex = 0;
-  let visibleItems = [];
+  let currentIndex  = 0;
+  let visibleItems  = [];
+  let lastFocused   = null;   // element to restore focus to on close
 
   const lightbox   = document.getElementById('lightbox');
   const backdrop   = document.getElementById('lightbox-backdrop');
@@ -45,6 +46,20 @@
   const closeBtn   = document.getElementById('lightbox-close');
   const prevBtn    = document.getElementById('lightbox-prev');
   const nextBtn    = document.getElementById('lightbox-next');
+
+  const FOCUSABLE = 'button:not([disabled]), [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+  function trapFocus(e) {
+    const focusable = Array.from(lightbox.querySelectorAll(FOCUSABLE));
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last  = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+    }
+  }
 
   function getVisible() {
     return Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
@@ -72,6 +87,13 @@
       const img = document.createElement('img');
       img.src = imgSrc;
       img.alt = cap;
+      // Honour data-priority="high" on the first above-fold items
+      if (item.dataset.priority === 'high') {
+        img.fetchPriority = 'high';
+        img.loading = 'eager';
+      } else {
+        img.loading = 'lazy';
+      }
       content.appendChild(img);
     } else {
       // Placeholder visual
@@ -92,21 +114,29 @@
   }
 
   function openLightbox(index) {
-    visibleItems = getVisible();
-    currentIndex = index;
+    visibleItems  = getVisible();
+    currentIndex  = index;
+    lastFocused   = document.activeElement;
     buildContent(visibleItems[currentIndex]);
-    lightbox.style.display  = 'flex';
-    backdrop.style.display  = 'block';
+    lightbox.style.display       = 'flex';
+    backdrop.style.display       = 'block';
     document.body.style.overflow = 'hidden';
+    lightbox.addEventListener('keydown', trapFocusHandler);
     closeBtn.focus();
   }
 
+  function trapFocusHandler(e) {
+    if (e.key === 'Tab') trapFocus(e);
+  }
+
   function closeLightbox() {
-    // Stop any playing video
     content.innerHTML = '';
-    lightbox.style.display  = 'none';
-    backdrop.style.display  = 'none';
+    lightbox.style.display       = 'none';
+    backdrop.style.display       = 'none';
     document.body.style.overflow = '';
+    lightbox.removeEventListener('keydown', trapFocusHandler);
+    // Restore focus to the thumb that opened the lightbox
+    if (lastFocused) { lastFocused.focus(); lastFocused = null; }
   }
 
   function navigate(dir) {

@@ -4,6 +4,14 @@
 (function () {
 
   /* ── Filter ──────────────────────────────────────────────── */
+  function updateEmptyState() {
+    const grid  = document.getElementById('gallery-grid');
+    const empty = document.getElementById('gallery-empty');
+    if (!grid || !empty) return;
+    const hasVisible = grid.querySelector('.gallery-item:not(.hidden)');
+    empty.hidden = !!hasVisible;
+  }
+
   function initFilters() {
     const btns  = document.querySelectorAll('.gallery-filter');
     const items = document.querySelectorAll('.gallery-item');
@@ -19,6 +27,8 @@
         items.forEach(item => {
           item.classList.toggle('hidden', filter !== 'all' && item.dataset.type !== filter);
         });
+
+        updateEmptyState();
       });
     });
   }

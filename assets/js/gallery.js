@@ -114,13 +114,13 @@
   }
 
   function openLightbox(index) {
-    visibleItems  = getVisible();
-    currentIndex  = index;
-    lastFocused   = document.activeElement;
+    visibleItems = getVisible();
+    currentIndex = index;
+    lastFocused  = document.activeElement;
     buildContent(visibleItems[currentIndex]);
-    lightbox.style.display       = 'flex';
-    backdrop.style.display       = 'block';
+    document.body.classList.add('lightbox-open');
     document.body.style.overflow = 'hidden';
+    lightbox.setAttribute('aria-hidden', 'false');
     lightbox.addEventListener('keydown', trapFocusHandler);
     closeBtn.focus();
   }
@@ -130,13 +130,13 @@
   }
 
   function closeLightbox() {
-    content.innerHTML = '';
-    lightbox.style.display       = 'none';
-    backdrop.style.display       = 'none';
+    document.body.classList.remove('lightbox-open');
     document.body.style.overflow = '';
+    lightbox.setAttribute('aria-hidden', 'true');
     lightbox.removeEventListener('keydown', trapFocusHandler);
-    // Restore focus to the thumb that opened the lightbox
     if (lastFocused) { lastFocused.focus(); lastFocused = null; }
+    // Clear content after the CSS fade finishes so the video stops
+    setTimeout(() => { content.innerHTML = ''; }, 260);
   }
 
   function navigate(dir) {
@@ -168,7 +168,7 @@
     nextBtn?.addEventListener('click', () => navigate(1));
 
     document.addEventListener('keydown', e => {
-      if (lightbox.style.display === 'none') return;
+      if (!document.body.classList.contains('lightbox-open')) return;
       if (e.key === 'Escape')     closeLightbox();
       if (e.key === 'ArrowLeft')  navigate(-1);
       if (e.key === 'ArrowRight') navigate(1);

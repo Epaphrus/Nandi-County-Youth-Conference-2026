@@ -153,6 +153,22 @@
 .gallery-note a { color: var(--blue); font-weight: 600; text-decoration: underline; }
 
 /* ══ LIGHTBOX ══════════════════════════════════════════════════ */
+
+/* Hidden by default — body.lightbox-open reveals both layers */
+.lightbox-backdrop,
+.lightbox {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+body.lightbox-open .lightbox-backdrop,
+body.lightbox-open .lightbox {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
 .lightbox-backdrop {
   position: fixed;
   inset: 0;

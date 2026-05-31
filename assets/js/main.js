@@ -115,7 +115,7 @@ function initSmoothScroll() {
       const target = document.querySelector(anchor.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      const offset = 80; // navbar height
+      const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-h')) || 64;
       const top = target.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
     });

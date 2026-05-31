@@ -54,9 +54,10 @@
   --space-2xl: 6rem;
 
   /* Layout */
-  --max-width: 1200px;
-  --radius:    8px;
-  --radius-lg: 16px;
+  --max-width:  1200px;
+  --radius:     8px;
+  --radius-lg:  16px;
+  --navbar-h:   64px;
 
   /* Shadows */
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
@@ -149,6 +150,10 @@ strong { color: var(--black); }
 
 @media (min-width: 768px) {
   .container { padding: 0 var(--space-lg); }
+}
+
+main {
+  padding-top: var(--navbar-h);
 }
 
 .section {

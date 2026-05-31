@@ -3,6 +3,9 @@
    home.css — Homepage-specific styles
    ============================================================ */
 
+/* Home page hero is full-bleed; its own top padding absorbs the navbar */
+main { padding-top: 0; }
+
 /* ── Hero content layout ───────────────────────────────────── */
 .hero-grid {
   width: 100%;

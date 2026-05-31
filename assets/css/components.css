@@ -126,7 +126,7 @@
 }
 
 .navbar-menu a.active {
-  color: var(--blue);
+  color: var(--red);
   font-weight: 600;
 }
 
@@ -219,10 +219,10 @@
   }
 
   .navbar-menu a.active {
-    color: var(--blue);
+    color: var(--red);
     font-weight: 600;
     border-left-color: var(--red);
-    background: rgba(0,0,255,0.03);
+    background: rgba(255,0,0,0.03);
   }
 
   /* Hide CTA from the top bar; show it anchored to the bottom of the drawer */
@@ -1239,64 +1239,6 @@ select.form-control {
   height: 16px;
 }
 
-/* ── PAGE HERO (inner pages) ───────────────────────────────── */
-.page-hero {
-  background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
-  padding: 5.5rem 0 4rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.page-hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 100%, rgba(255,0,0,0.07) 0%, transparent 70%);
-}
-
-.page-hero-content {
-  position: relative;
-  z-index: 1;
-}
-
-.page-hero h1 {
-  color: var(--white);
-  margin-bottom: var(--space-sm);
-}
-
-.page-hero p {
-  color: rgba(255,255,255,0.75);
-  font-size: var(--fs-md);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Breadcrumb */
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  justify-content: center;
-  font-size: var(--fs-xs);
-  color: rgba(255,255,255,0.5);
-  margin-bottom: var(--space-sm);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.breadcrumb a {
-  color: rgba(255,255,255,0.6);
-  transition: color var(--transition);
-}
-
-.breadcrumb a:hover {
-  color: var(--white);
-}
-
-.breadcrumb i {
-  font-size: 0.6rem;
-}
 
 /* ── NOTIFICATION / ALERT ──────────────────────────────────── */
 .alert {

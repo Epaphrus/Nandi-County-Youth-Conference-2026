@@ -28,7 +28,7 @@ input[type="radio"] {
 
 /* Restore inline-text links */
 p a, li a, .footer-links a, .ann-card-body a,
-.breadcrumb a, .fasting-note a, .gallery-note a,
+.fasting-note a, .gallery-note a,
 .speakers-tba-note a {
   min-height: unset;
 }
@@ -193,10 +193,6 @@ p a, li a, .footer-links a, .ann-card-body a,
   #scroll-top { right: 1rem; bottom: 1.5rem; }
 }
 
-/* ── Page hero: reduce padding on phone ─────────────────────── */
-@media (max-width: 640px) {
-  .page-hero { padding: 5rem 0 2.5rem; }
-}
 
 /* ── Section spacing: tighter on mobile ─────────────────────── */
 @media (max-width: 640px) {

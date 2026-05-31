@@ -15,6 +15,139 @@
   }
 }
 
+/* ── Committees grid ───────────────────────────────────────── */
+.committees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.committee-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  border-top: 4px solid var(--blue);
+  position: relative;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.committee-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.committee-card--tba {
+  border-top-color: var(--gray-mid);
+  opacity: 0.75;
+}
+
+.committee-num {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--gray-mid);
+  line-height: 1;
+  user-select: none;
+}
+
+.committee-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--gray);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-sm);
+  color: var(--blue);
+  font-size: 1.2rem;
+}
+
+.committee-name {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: var(--space-sm);
+  padding-right: 2.5rem;
+  line-height: 1.3;
+}
+
+.committee-members {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.committee-members li {
+  border-top: 1px solid var(--gray);
+  padding-top: var(--space-sm);
+}
+.committee-members li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.member-name {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 0.4rem;
+}
+.member-name--tba {
+  color: var(--gray-text);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.member-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.contact-tel,
+.contact-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition);
+  white-space: nowrap;
+}
+
+.contact-tel {
+  background: var(--gray);
+  color: var(--blue);
+  border: 1px solid var(--gray-mid);
+}
+.contact-tel:hover {
+  background: var(--blue);
+  color: var(--white);
+  border-color: var(--blue);
+}
+
+.contact-wa {
+  background: #e8f5e9;
+  color: var(--whatsapp-dark);
+  border: 1px solid #a5d6a7;
+}
+.contact-wa:hover {
+  background: var(--whatsapp);
+  color: var(--white);
+  border-color: var(--whatsapp);
+}
+
 /* ── Info Cards ────────────────────────────────────────────── */
 .contact-info-col {
   display: flex;
@@ -109,35 +242,6 @@
   flex-shrink: 0;
 }
 
-/* ── Contact form ──────────────────────────────────────────── */
-.contact-main-col {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.contact-form-wrap {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  box-shadow: var(--shadow-sm);
-}
-
-.contact-form-title {
-  font-size: var(--fs-lg);
-  color: var(--blue);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: var(--space-md);
-  padding-bottom: var(--space-sm);
-  border-bottom: 2px solid var(--gray);
-}
-
-.contact-form-title i {
-  color: var(--red);
-}
-
 /* ── Map ───────────────────────────────────────────────────── */
 .map-wrap {
   background: var(--white);
@@ -172,18 +276,8 @@
   border: none;
 }
 
-/* Honeypot */
-.honeypot {
-  position: absolute;
-  left: -9999px;
-  opacity: 0;
-  pointer-events: none;
-  height: 0;
-  overflow: hidden;
-}
-
-@media (max-width: 600px) {
-  .contact-form-wrap {
-    padding: var(--space-md);
-  }
+/* Main column: map fills the full height of the sidebar */
+.contact-main-col {
+  display: flex;
+  flex-direction: column;
 }

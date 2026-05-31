@@ -231,3 +231,8 @@ p a, li a, .footer-links a, .ann-card-body a,
 @media (max-width: 899px) {
   .reg-layout { grid-template-columns: 1fr; }
 }
+
+/* ── Committees grid: 1-col on phones ───────────────────────── */
+@media (max-width: 480px) {
+  .committees-grid { grid-template-columns: 1fr; }
+}

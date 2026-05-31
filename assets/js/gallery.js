@@ -107,6 +107,7 @@
       content.appendChild(ph);
     }
 
+    lightbox.setAttribute('aria-label', type === 'video' ? 'Video viewer' : 'Image viewer');
     caption.textContent = cap;
     counter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
     prevBtn.disabled = currentIndex === 0;

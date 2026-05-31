@@ -29,7 +29,6 @@ function initNavbar() {
   const navbar  = document.getElementById('navbar');
   const toggle  = document.getElementById('navToggle');
   const menu    = document.getElementById('navMenu');
-  const backdrop = document.getElementById('navBackdrop');
 
   if (!navbar) return;
 
@@ -43,7 +42,6 @@ function initNavbar() {
   if (toggle && menu) {
     const openMenu = () => {
       menu.classList.add('open');
-      backdrop.classList.add('open');
       toggle.classList.add('open');
       toggle.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
@@ -51,7 +49,6 @@ function initNavbar() {
 
     const closeMenu = () => {
       menu.classList.remove('open');
-      backdrop.classList.remove('open');
       toggle.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
@@ -60,8 +57,6 @@ function initNavbar() {
     toggle.addEventListener('click', () => {
       menu.classList.contains('open') ? closeMenu() : openMenu();
     });
-
-    backdrop.addEventListener('click', closeMenu);
 
     // Close on nav link click
     menu.querySelectorAll('a').forEach(link => {
@@ -74,8 +69,6 @@ function initNavbar() {
     });
   }
 
-  // Active link highlighting
-  highlightActiveLink();
 }
 
 function highlightActiveLink() {
@@ -132,6 +125,11 @@ function initSmoothScroll() {
 /* ── Bootstrap everything ──────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
   const root = getRootPath();
+
+  // Highlight the active link as soon as the navbar HTML is in the DOM,
+  // not after the footer also resolves — avoids a race on slow connections.
+  document.getElementById('navbar-placeholder')
+    .addEventListener('component:loaded', highlightActiveLink, { once: true });
 
   await Promise.all([
     loadComponent('navbar-placeholder', `${root}components/navbar.html`),

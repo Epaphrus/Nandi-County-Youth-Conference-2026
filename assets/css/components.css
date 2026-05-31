@@ -242,18 +242,6 @@
   }
 }
 
-/* Mobile overlay backdrop */
-.nav-backdrop {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  transition: opacity 0.3s ease;
-}
-
-.nav-backdrop.open {
-  display: block;
-}
 
 /* ── HERO ───────────────────────────────────────────────────── */
 .hero {

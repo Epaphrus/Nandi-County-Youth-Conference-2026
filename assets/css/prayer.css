@@ -126,6 +126,11 @@
   background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
 }
 
+.prayer-scriptures-section .section-label,
+.prayer-scriptures-section h2 {
+  color: var(--white);
+}
+
 .scriptures-grid {
   display: grid;
   gap: var(--space-md);

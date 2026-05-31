@@ -108,11 +108,17 @@
   function initLightbox() {
     if (!lightbox) return;
 
-    // Open on thumb click or keyboard
-    document.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
-      thumb.addEventListener('click', () => openLightbox(i));
+    // Open on thumb click or keyboard — index resolved at click time against visible items
+    document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+      const item = thumb.closest('.gallery-item');
+      const openAtItem = () => {
+        const visible = getVisible();
+        const idx = visible.indexOf(item);
+        if (idx !== -1) openLightbox(idx);
+      };
+      thumb.addEventListener('click', openAtItem);
       thumb.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openAtItem(); }
       });
     });
 

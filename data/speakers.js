@@ -5,7 +5,7 @@ const SPEAKERS = [
     name: "Snr Dab Justin Langat",
     role: "Keynote Speaker",
     bio: "A servant of THE LORD with a powerful ministry in revival, repentance, and youth transformation across Kenya.",
-    image: "assets/images/speakers/SDAB Justin Langat.jpg",
+    image: "assets/images/speakers/SDAB_Justin_Langat.webp",
     featured: true,
   },
   {

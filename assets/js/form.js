@@ -357,21 +357,11 @@ function initCommitteeLiveValidation(form) {
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Open buttons ── */
-  const openConfBtns = [
-    document.getElementById('open-conf-modal'),
-    document.getElementById('open-conf-modal-2'),
-  ];
-  openConfBtns.forEach(btn => {
-    if (btn) btn.addEventListener('click', () => openModal('conf-modal'));
-  });
+  document.getElementById('open-conf-modal')
+    ?.addEventListener('click', () => openModal('conf-modal'));
 
-  const openCommitteeBtns = [
-    document.getElementById('open-committee-modal'),
-    document.getElementById('open-committee-modal-2'),
-  ];
-  openCommitteeBtns.forEach(btn => {
-    if (btn) btn.addEventListener('click', () => openModal('committee-modal'));
-  });
+  document.getElementById('open-committee-modal')
+    ?.addEventListener('click', () => openModal('committee-modal'));
 
   /* ── Close buttons ── */
   document.getElementById('close-conf-modal')

@@ -1,12 +1,13 @@
 /* ============================================================
    NANDI COUNTY YOUTH CONFERENCE 2026
-   form.js — Registration form validation + Google Sheets POST
+   form.js — Modal logic, form validation, Google Sheets POST
+   Handles: Conference Registration + Committee Registration
    ============================================================ */
 
-/* ── Google Sheets Apps Script endpoint ────────────────────── */
-// Replace this URL with your deployed Apps Script web app URL.
-// Setup guide: https://docs.google.com/spreadsheets → Extensions → Apps Script
-const SHEETS_ENDPOINT = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+/* ── Google Sheets endpoints ───────────────────────────────── */
+// Replace these with your deployed Apps Script web app URLs.
+const CONF_ENDPOINT      = 'https://script.google.com/macros/s/YOUR_CONF_SCRIPT_ID/exec';
+const COMMITTEE_ENDPOINT = 'https://script.google.com/macros/s/YOUR_COMMITTEE_SCRIPT_ID/exec';
 
 /* ── Sanitize input (prevent XSS) ─────────────────────────── */
 function sanitize(str) {
@@ -15,10 +16,9 @@ function sanitize(str) {
   return div.innerHTML.trim();
 }
 
-/* ── Validate phone: accepts 07XX... or +2547X... ──────────── */
+/* ── Validate Kenyan phone number ──────────────────────────── */
 function isValidKenyanPhone(phone) {
-  const cleaned = phone.replace(/\s+/g, '');
-  return /^(0|\+254)[0-9]{9}$/.test(cleaned);
+  return /^(0|\+254)[0-9]{9}$/.test(phone.replace(/\s+/g, ''));
 }
 
 /* ── Field error helpers ───────────────────────────────────── */
@@ -36,213 +36,377 @@ function clearError(fieldId, errId) {
   if (err)   err.classList.remove('visible');
 }
 
-function clearAllErrors() {
-  document.querySelectorAll('.form-control.error').forEach(el => el.classList.remove('error'));
-  document.querySelectorAll('.form-error.visible').forEach(el => el.classList.remove('visible'));
-}
-
-/* ── Validate full form; returns true if valid ─────────────── */
-function validateForm(form) {
-  clearAllErrors();
-  let valid = true;
-
-  // Full name
-  const name = form.querySelector('#full-name');
-  if (!name.value.trim() || name.value.trim().length < 2) {
-    showError('full-name', 'err-full-name');
-    valid = false;
-  }
-
-  // Phone
-  const phone = form.querySelector('#phone');
-  if (!isValidKenyanPhone(phone.value)) {
-    showError('phone', 'err-phone');
-    valid = false;
-  }
-
-  // Email (only validate if filled)
-  const email = form.querySelector('#email');
-  if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
-    showError('email', 'err-email');
-    valid = false;
-  }
-
-  // Gender
-  const gender = form.querySelector('#gender');
-  if (!gender.value) {
-    showError('gender', 'err-gender');
-    valid = false;
-  }
-
-  // Age
-  const age = form.querySelector('#age');
-  const ageVal = parseInt(age.value, 10);
-  if (!age.value || isNaN(ageVal) || ageVal < 12 || ageVal > 35) {
-    showError('age', 'err-age');
-    valid = false;
-  }
-
-  // Church name
-  const church = form.querySelector('#church-name');
-  if (!church.value.trim()) {
-    showError('church-name', 'err-church-name');
-    valid = false;
-  }
-
-  // Sub-county
-  const subCounty = form.querySelector('#sub-county');
-  if (!subCounty.value) {
-    showError('sub-county', 'err-sub-county');
-    valid = false;
-  }
-
-  // Accommodation
-  const accommodation = form.querySelector('input[name="accommodation"]:checked');
-  if (!accommodation) {
-    document.getElementById('err-accommodation').classList.add('visible');
-    valid = false;
-  }
-
-  // Transport
-  const transport = form.querySelector('input[name="transport"]:checked');
-  if (!transport) {
-    document.getElementById('err-transport').classList.add('visible');
-    valid = false;
-  }
-
-  return valid;
-}
-
-/* ── Collect form data ─────────────────────────────────────── */
-function collectFormData(form) {
-  return {
-    timestamp:      new Date().toISOString(),
-    fullName:       sanitize(form.querySelector('#full-name').value.trim()),
-    phone:          sanitize(form.querySelector('#phone').value.trim()),
-    email:          sanitize(form.querySelector('#email').value.trim()),
-    gender:         sanitize(form.querySelector('#gender').value),
-    age:            sanitize(form.querySelector('#age').value),
-    churchName:     sanitize(form.querySelector('#church-name').value.trim()),
-    subCounty:      sanitize(form.querySelector('#sub-county').value),
-    pastorName:     sanitize(form.querySelector('#pastor-name').value.trim()),
-    accommodation:  form.querySelector('input[name="accommodation"]:checked')?.value || '',
-    transport:      form.querySelector('input[name="transport"]:checked')?.value || '',
-    prayerRequests: sanitize(form.querySelector('#prayer-requests').value.trim()),
-    expectations:   sanitize(form.querySelector('#expectations').value.trim()),
-  };
+function clearAllErrors(form) {
+  form.querySelectorAll('.form-control.error').forEach(el => el.classList.remove('error'));
+  form.querySelectorAll('.form-error.visible').forEach(el => el.classList.remove('visible'));
 }
 
 /* ── Submit to Google Sheets ───────────────────────────────── */
-async function submitToSheets(data) {
-  const params = new URLSearchParams(data);
-  const response = await fetch(SHEETS_ENDPOINT, {
+async function submitToSheets(endpoint, data) {
+  const response = await fetch(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: params.toString(),
+    body: new URLSearchParams(data).toString(),
   });
   if (!response.ok) throw new Error(`Server error: ${response.status}`);
   return response;
 }
 
-/* ── UI state helpers ──────────────────────────────────────── */
-function setLoading(loading) {
-  const btn     = document.getElementById('reg-submit');
-  const text    = document.getElementById('reg-submit-text');
-  const spinner = document.getElementById('reg-submit-spinner');
+/* ══════════════════════════════════════════════════════════════
+   MODAL MANAGEMENT
+══════════════════════════════════════════════════════════════ */
+
+const backdrop = document.getElementById('modal-backdrop');
+
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+  modal.setAttribute('aria-hidden', 'false');
+  modal.classList.add('is-open');
+  backdrop.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+
+  // Focus the first focusable element inside the modal
+  const focusable = modal.querySelector('button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  if (focusable) setTimeout(() => focusable.focus(), 50);
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+  modal.setAttribute('aria-hidden', 'true');
+  modal.classList.remove('is-open');
+  backdrop.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+function closeAllModals() {
+  document.querySelectorAll('.modal-overlay.is-open').forEach(m => {
+    m.setAttribute('aria-hidden', 'true');
+    m.classList.remove('is-open');
+  });
+  backdrop.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+/* Trap focus inside open modal */
+function trapFocus(modal, e) {
+  const focusable = modal.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  );
+  const first = focusable[0];
+  const last  = focusable[focusable.length - 1];
+  if (e.key === 'Tab') {
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+    }
+  }
+  if (e.key === 'Escape') closeAllModals();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CONFERENCE REGISTRATION FORM
+══════════════════════════════════════════════════════════════ */
+
+function validateConfForm(form) {
+  clearAllErrors(form);
+  let valid = true;
+
+  const name = form.querySelector('#conf-full-name');
+  if (!name.value.trim() || name.value.trim().length < 2) {
+    showError('conf-full-name', 'err-conf-full-name'); valid = false;
+  }
+
+  const phone = form.querySelector('#conf-phone');
+  if (!isValidKenyanPhone(phone.value)) {
+    showError('conf-phone', 'err-conf-phone'); valid = false;
+  }
+
+  const gender = form.querySelector('#conf-gender');
+  if (!gender.value) {
+    showError('conf-gender', 'err-conf-gender'); valid = false;
+  }
+
+  const region = form.querySelector('#conf-region');
+  if (!region.value) {
+    showError('conf-region', 'err-conf-region'); valid = false;
+  }
+
+  const church = form.querySelector('#conf-church');
+  if (!church.value.trim()) {
+    showError('conf-church', 'err-conf-church'); valid = false;
+  }
+
+  return valid;
+}
+
+function collectConfData(form) {
+  return {
+    formType:      'Conference Registration',
+    timestamp:     new Date().toISOString(),
+    fullName:      sanitize(form.querySelector('#conf-full-name').value.trim()),
+    phone:         sanitize(form.querySelector('#conf-phone').value.trim()),
+    gender:        sanitize(form.querySelector('#conf-gender').value),
+    region:        sanitize(form.querySelector('#conf-region').value),
+    church:        sanitize(form.querySelector('#conf-church').value.trim()),
+    allergies:     sanitize(form.querySelector('#conf-allergies').value.trim()),
+    specialDiet:   sanitize(form.querySelector('#conf-diet').value.trim()),
+  };
+}
+
+function setConfLoading(loading) {
+  const btn     = document.getElementById('conf-submit');
+  const text    = document.getElementById('conf-submit-text');
+  const spinner = document.getElementById('conf-submit-spinner');
   if (!btn) return;
   btn.disabled = loading;
   text.textContent = loading ? 'Registering…' : 'Complete Registration';
   spinner.style.display = loading ? 'inline' : 'none';
 }
 
-function showBanner(type, message) {
-  const banner = document.getElementById('reg-error-banner');
-  const msg    = document.getElementById('reg-error-msg');
+function showConfError(message) {
+  const banner = document.getElementById('conf-error-banner');
+  const msg    = document.getElementById('conf-error-msg');
   if (!banner) return;
-  banner.className = `alert alert-${type}`;
-  msg.textContent  = message;
+  msg.textContent = message;
   banner.style.display = 'flex';
-  banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-function hideBanner() {
-  const banner = document.getElementById('reg-error-banner');
+function hideConfError() {
+  const banner = document.getElementById('conf-error-banner');
   if (banner) banner.style.display = 'none';
 }
 
-/* ── Main submit handler ───────────────────────────────────── */
-async function handleSubmit(e) {
+async function handleConfSubmit(e) {
   e.preventDefault();
-  hideBanner();
+  hideConfError();
 
-  const form     = document.getElementById('registration-form');
-  const honeypot = form.querySelector('#website');
+  const form     = document.getElementById('conf-form');
+  const honeypot = form.querySelector('#conf-website');
+  if (honeypot && honeypot.value.trim()) return;
 
-  // Bot check
-  if (honeypot && honeypot.value.trim() !== '') {
-    return; // silently reject
-  }
-
-  if (!validateForm(form)) {
-    showBanner('error', 'Please fill in all required fields correctly.');
-    // Scroll to first error
+  if (!validateConfForm(form)) {
+    showConfError('Please fill in all required fields correctly.');
     const firstError = form.querySelector('.form-control.error');
     if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
 
-  const data = collectFormData(form);
-  setLoading(true);
+  const data = collectConfData(form);
+  setConfLoading(true);
 
   try {
-    // If no endpoint configured, skip network and show success (dev mode)
-    if (SHEETS_ENDPOINT.includes('YOUR_SCRIPT_ID')) {
-      await new Promise(r => setTimeout(r, 1200)); // simulate latency
+    if (CONF_ENDPOINT.includes('YOUR_CONF_SCRIPT_ID')) {
+      await new Promise(r => setTimeout(r, 1200));
     } else {
-      await submitToSheets(data);
+      await submitToSheets(CONF_ENDPOINT, data);
     }
-
-    // Show success
     form.style.display = 'none';
-    document.getElementById('reg-success').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
+    document.getElementById('conf-success').style.display = 'block';
   } catch (err) {
-    console.error('Registration error:', err);
-    showBanner('error', 'Registration failed. Please check your connection and try again.');
+    console.error('Conference registration error:', err);
+    showConfError('Registration failed. Please check your connection and try again.');
   } finally {
-    setLoading(false);
+    setConfLoading(false);
   }
 }
 
-/* ── Live validation (clear errors on fix) ─────────────────── */
-function initLiveValidation() {
-  const fields = [
-    ['full-name',   'err-full-name'],
-    ['phone',       'err-phone'],
-    ['email',       'err-email'],
-    ['gender',      'err-gender'],
-    ['age',         'err-age'],
-    ['church-name', 'err-church-name'],
-    ['sub-county',  'err-sub-county'],
+function initConfLiveValidation(form) {
+  const pairs = [
+    ['conf-full-name', 'err-conf-full-name'],
+    ['conf-phone',     'err-conf-phone'],
+    ['conf-gender',    'err-conf-gender'],
+    ['conf-region',    'err-conf-region'],
+    ['conf-church',    'err-conf-church'],
   ];
-
-  fields.forEach(([id, errId]) => {
+  pairs.forEach(([id, errId]) => {
     const el = document.getElementById(id);
     if (!el) return;
-    el.addEventListener('input', () => {
-      if (el.value.trim()) clearError(id, errId);
-    });
-    el.addEventListener('change', () => {
-      if (el.value.trim()) clearError(id, errId);
-    });
+    el.addEventListener('input',  () => { if (el.value.trim()) clearError(id, errId); });
+    el.addEventListener('change', () => { if (el.value.trim()) clearError(id, errId); });
   });
 }
 
-/* ── Init ──────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════
+   COMMITTEE REGISTRATION FORM
+══════════════════════════════════════════════════════════════ */
+
+function validateCommitteeForm(form) {
+  clearAllErrors(form);
+  let valid = true;
+
+  const name = form.querySelector('#committee-full-name');
+  if (!name.value.trim() || name.value.trim().length < 2) {
+    showError('committee-full-name', 'err-committee-full-name'); valid = false;
+  }
+
+  const phone = form.querySelector('#committee-phone');
+  if (!isValidKenyanPhone(phone.value)) {
+    showError('committee-phone', 'err-committee-phone'); valid = false;
+  }
+
+  const gender = form.querySelector('#committee-gender');
+  if (!gender.value) {
+    showError('committee-gender', 'err-committee-gender'); valid = false;
+  }
+
+  const region = form.querySelector('#committee-region');
+  if (!region.value) {
+    showError('committee-region', 'err-committee-region'); valid = false;
+  }
+
+  const dept = form.querySelector('#committee-department');
+  if (!dept.value) {
+    showError('committee-department', 'err-committee-department'); valid = false;
+  }
+
+  return valid;
+}
+
+function collectCommitteeData(form) {
+  return {
+    formType:   'Committee Registration',
+    timestamp:  new Date().toISOString(),
+    fullName:   sanitize(form.querySelector('#committee-full-name').value.trim()),
+    phone:      sanitize(form.querySelector('#committee-phone').value.trim()),
+    gender:     sanitize(form.querySelector('#committee-gender').value),
+    region:     sanitize(form.querySelector('#committee-region').value),
+    department: sanitize(form.querySelector('#committee-department').value),
+  };
+}
+
+function setCommitteeLoading(loading) {
+  const btn     = document.getElementById('committee-submit');
+  const text    = document.getElementById('committee-submit-text');
+  const spinner = document.getElementById('committee-submit-spinner');
+  if (!btn) return;
+  btn.disabled = loading;
+  text.textContent = loading ? 'Submitting…' : 'Submit Application';
+  spinner.style.display = loading ? 'inline' : 'none';
+}
+
+function showCommitteeError(message) {
+  const banner = document.getElementById('committee-error-banner');
+  const msg    = document.getElementById('committee-error-msg');
+  if (!banner) return;
+  msg.textContent = message;
+  banner.style.display = 'flex';
+}
+
+function hideCommitteeError() {
+  const banner = document.getElementById('committee-error-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+async function handleCommitteeSubmit(e) {
+  e.preventDefault();
+  hideCommitteeError();
+
+  const form     = document.getElementById('committee-form');
+  const honeypot = form.querySelector('#committee-website');
+  if (honeypot && honeypot.value.trim()) return;
+
+  if (!validateCommitteeForm(form)) {
+    showCommitteeError('Please fill in all required fields correctly.');
+    const firstError = form.querySelector('.form-control.error');
+    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  const data = collectCommitteeData(form);
+  setCommitteeLoading(true);
+
+  try {
+    if (COMMITTEE_ENDPOINT.includes('YOUR_COMMITTEE_SCRIPT_ID')) {
+      await new Promise(r => setTimeout(r, 1200));
+    } else {
+      await submitToSheets(COMMITTEE_ENDPOINT, data);
+    }
+    form.style.display = 'none';
+    document.getElementById('committee-success').style.display = 'block';
+  } catch (err) {
+    console.error('Committee registration error:', err);
+    showCommitteeError('Submission failed. Please check your connection and try again.');
+  } finally {
+    setCommitteeLoading(false);
+  }
+}
+
+function initCommitteeLiveValidation(form) {
+  const pairs = [
+    ['committee-full-name',   'err-committee-full-name'],
+    ['committee-phone',       'err-committee-phone'],
+    ['committee-gender',      'err-committee-gender'],
+    ['committee-region',      'err-committee-region'],
+    ['committee-department',  'err-committee-department'],
+  ];
+  pairs.forEach(([id, errId]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input',  () => { if (el.value.trim()) clearError(id, errId); });
+    el.addEventListener('change', () => { if (el.value.trim()) clearError(id, errId); });
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════════════════ */
+
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('registration-form');
-  if (!form) return;
-  form.addEventListener('submit', handleSubmit);
-  initLiveValidation();
+
+  /* ── Open buttons ── */
+  const openConfBtns = [
+    document.getElementById('open-conf-modal'),
+    document.getElementById('open-conf-modal-2'),
+  ];
+  openConfBtns.forEach(btn => {
+    if (btn) btn.addEventListener('click', () => openModal('conf-modal'));
+  });
+
+  const openCommitteeBtns = [
+    document.getElementById('open-committee-modal'),
+    document.getElementById('open-committee-modal-2'),
+  ];
+  openCommitteeBtns.forEach(btn => {
+    if (btn) btn.addEventListener('click', () => openModal('committee-modal'));
+  });
+
+  /* ── Close buttons ── */
+  document.getElementById('close-conf-modal')
+    ?.addEventListener('click', () => closeModal('conf-modal'));
+
+  document.getElementById('close-committee-modal')
+    ?.addEventListener('click', () => closeModal('committee-modal'));
+
+  document.getElementById('conf-success-close')
+    ?.addEventListener('click', () => closeModal('conf-modal'));
+
+  document.getElementById('committee-success-close')
+    ?.addEventListener('click', () => closeModal('committee-modal'));
+
+  /* ── Backdrop click closes ── */
+  document.getElementById('modal-backdrop')
+    ?.addEventListener('click', closeAllModals);
+
+  /* ── Keyboard: Escape + focus trap ── */
+  document.addEventListener('keydown', e => {
+    const openModal = document.querySelector('.modal-overlay.is-open');
+    if (!openModal) return;
+    trapFocus(openModal, e);
+  });
+
+  /* ── Form submission ── */
+  document.getElementById('conf-form')
+    ?.addEventListener('submit', handleConfSubmit);
+
+  document.getElementById('committee-form')
+    ?.addEventListener('submit', handleCommitteeSubmit);
+
+  /* ── Live validation ── */
+  const confForm      = document.getElementById('conf-form');
+  const committeeForm = document.getElementById('committee-form');
+  if (confForm)      initConfLiveValidation(confForm);
+  if (committeeForm) initCommitteeLiveValidation(committeeForm);
 });

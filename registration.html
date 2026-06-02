@@ -55,11 +55,11 @@
 
         <!-- ── Two primary CTA buttons ── -->
         <div class="reg-hero-btns" data-aos="fade-up" data-aos-delay="400">
-          <button class="btn btn-primary btn-lg" id="open-conf-modal" aria-haspopup="dialog">
+          <button type="button" class="btn btn-primary btn-lg" id="open-conf-modal" aria-haspopup="dialog">
             <i class="fas fa-user-plus" aria-hidden="true"></i>
             Register for Conference
           </button>
-          <button class="btn btn-outline-white btn-lg" id="open-committee-modal" aria-haspopup="dialog">
+          <button type="button" class="btn btn-outline-white btn-lg" id="open-committee-modal" aria-haspopup="dialog">
             <i class="fas fa-hands-helping" aria-hidden="true"></i>
             Join a Committee
           </button>
@@ -163,14 +163,14 @@
             <div class="form-group">
               <label for="conf-full-name">Full Name <span class="required" aria-hidden="true">*</span></label>
               <input type="text" id="conf-full-name" name="fullName" class="form-control" placeholder="e.g. Derrick Kiprotich" required autocomplete="name" aria-required="true" />
-              <span class="form-error" id="err-conf-full-name" role="alert">Please enter your full name.</span>
+              <span class="form-error" id="err-conf-full-name" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Enter your first and last name.</span>
             </div>
 
             <div class="form-row form-row-2">
               <div class="form-group">
                 <label for="conf-phone">Phone Number <span class="required" aria-hidden="true">*</span></label>
                 <input type="tel" id="conf-phone" name="phone" class="form-control" placeholder="e.g. 07XX XXX XXX" required autocomplete="tel" aria-required="true" inputmode="tel" />
-                <span class="form-error" id="err-conf-phone" role="alert">Enter a valid Kenyan phone number (e.g. 0712 345 678).</span>
+                <span class="form-error" id="err-conf-phone" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Use format 07XX XXX XXX or +2547XX XXX XXX.</span>
               </div>
 
               <div class="form-group">
@@ -180,7 +180,7 @@
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
-                <span class="form-error" id="err-conf-gender" role="alert">Please select your gender.</span>
+                <span class="form-error" id="err-conf-gender" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Select Male or Female to continue.</span>
               </div>
             </div>
           </fieldset>
@@ -210,13 +210,13 @@
                   <option>Songhor</option>
                   <option>Baraton</option>
                 </select>
-                <span class="form-error" id="err-conf-region" role="alert">Please select your region.</span>
+                <span class="form-error" id="err-conf-region" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Choose the region you are coming from.</span>
               </div>
 
               <div class="form-group">
                 <label for="conf-church">Church / Altar <span class="required" aria-hidden="true">*</span></label>
                 <input type="text" id="conf-church" name="church" class="form-control" placeholder="e.g. Kapsabet Central Assembly" required aria-required="true" />
-                <span class="form-error" id="err-conf-church" role="alert">Please enter your church or altar name.</span>
+                <span class="form-error" id="err-conf-church" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Enter the name of your church or altar.</span>
               </div>
             </div>
           </fieldset>
@@ -319,14 +319,14 @@
             <div class="form-group">
               <label for="committee-full-name">Full Name <span class="required" aria-hidden="true">*</span></label>
               <input type="text" id="committee-full-name" name="fullName" class="form-control" placeholder="e.g. Sharon Chebet" required autocomplete="name" aria-required="true" />
-              <span class="form-error" id="err-committee-full-name" role="alert">Please enter your full name.</span>
+              <span class="form-error" id="err-committee-full-name" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Enter your first and last name.</span>
             </div>
 
             <div class="form-row form-row-2">
               <div class="form-group">
                 <label for="committee-phone">Phone Number <span class="required" aria-hidden="true">*</span></label>
                 <input type="tel" id="committee-phone" name="phone" class="form-control" placeholder="e.g. 07XX XXX XXX" required autocomplete="tel" aria-required="true" inputmode="tel" />
-                <span class="form-error" id="err-committee-phone" role="alert">Enter a valid Kenyan phone number.</span>
+                <span class="form-error" id="err-committee-phone" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Use format 07XX XXX XXX or +2547XX XXX XXX.</span>
               </div>
 
               <div class="form-group">
@@ -336,7 +336,7 @@
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
-                <span class="form-error" id="err-committee-gender" role="alert">Please select your gender.</span>
+                <span class="form-error" id="err-committee-gender" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Select Male or Female to continue.</span>
               </div>
             </div>
           </fieldset>
@@ -365,7 +365,7 @@
                 <option>Songhor</option>
                 <option>Baraton</option>
               </select>
-              <span class="form-error" id="err-committee-region" role="alert">Please select your region.</span>
+              <span class="form-error" id="err-committee-region" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Choose the region you are coming from.</span>
             </div>
 
             <div class="form-group">
@@ -390,7 +390,7 @@
                 <option>Medical Committee</option>
                 <option>Decoration Committee</option>
               </select>
-              <span class="form-error" id="err-committee-department" role="alert">Please select a department.</span>
+              <span class="form-error" id="err-committee-department" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Choose the committee you would like to serve on.</span>
             </div>
           </fieldset>
 

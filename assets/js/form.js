@@ -60,15 +60,18 @@ function getBackdrop() {
   return document.getElementById('modal-backdrop');
 }
 
-function openModal(modalId) {
+/* Track which button opened which modal for focus return (#18) */
+const modalOpeners = {};
+
+function openModal(modalId, triggerEl) {
   const modal = document.getElementById(modalId);
   if (!modal) return;
+  if (triggerEl) modalOpeners[modalId] = triggerEl;
   modal.setAttribute('aria-hidden', 'false');
   modal.classList.add('is-open');
   getBackdrop()?.classList.add('is-open');
   document.body.style.overflow = 'hidden';
 
-  // Focus the first focusable element inside the modal
   const focusable = modal.querySelector('button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
   if (focusable) setTimeout(() => focusable.focus(), 50);
 }
@@ -76,19 +79,33 @@ function openModal(modalId) {
 function closeModal(modalId) {
   const modal = document.getElementById(modalId);
   if (!modal) return;
-  modal.setAttribute('aria-hidden', 'true');
-  modal.classList.remove('is-open');
-  getBackdrop()?.classList.remove('is-open');
-  document.body.style.overflow = '';
+  const box = modal.querySelector('.modal-box');
+
+  /* Exit animation (#1) */
+  if (box) {
+    box.classList.add('is-closing');
+    setTimeout(() => {
+      box.classList.remove('is-closing');
+      modal.setAttribute('aria-hidden', 'true');
+      modal.classList.remove('is-open');
+      getBackdrop()?.classList.remove('is-open');
+      document.body.style.overflow = '';
+      /* Return focus to the button that opened this modal (#18) */
+      modalOpeners[modalId]?.focus();
+    }, 200);
+  } else {
+    modal.setAttribute('aria-hidden', 'true');
+    modal.classList.remove('is-open');
+    getBackdrop()?.classList.remove('is-open');
+    document.body.style.overflow = '';
+    modalOpeners[modalId]?.focus();
+  }
 }
 
 function closeAllModals() {
   document.querySelectorAll('.modal-overlay.is-open').forEach(m => {
-    m.setAttribute('aria-hidden', 'true');
-    m.classList.remove('is-open');
+    closeModal(m.id);
   });
-  getBackdrop()?.classList.remove('is-open');
-  document.body.style.overflow = '';
 }
 
 /* Trap focus inside open modal */
@@ -197,7 +214,6 @@ async function handleConfSubmit(e) {
   if (honeypot && honeypot.value.trim()) return;
 
   if (!validateConfForm(form)) {
-    showConfError('Please fill in all required fields correctly.');
     const firstError = form.querySelector('.form-control.error');
     if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
@@ -223,20 +239,44 @@ async function handleConfSubmit(e) {
   }
 }
 
+function setValid(fieldId, errId) {
+  const field = document.getElementById(fieldId);
+  const err   = document.getElementById(errId);
+  if (field) { field.classList.remove('error'); field.classList.add('valid'); }
+  if (err)   err.classList.remove('visible');
+}
+
 function initConfLiveValidation(form) {
-  const pairs = [
-    ['conf-full-name', 'err-conf-full-name'],
-    ['conf-phone',     'err-conf-phone'],
-    ['conf-gender',    'err-conf-gender'],
-    ['conf-region',    'err-conf-region'],
-    ['conf-church',    'err-conf-church'],
+  /* Text / select fields — validate on input and clear error only when valid */
+  const textPairs = [
+    { id: 'conf-full-name', errId: 'err-conf-full-name', check: v => v.trim().length >= 2 },
+    { id: 'conf-gender',    errId: 'err-conf-gender',    check: v => v !== '' },
+    { id: 'conf-region',    errId: 'err-conf-region',    check: v => v !== '' },
+    { id: 'conf-church',    errId: 'err-conf-church',    check: v => v.trim().length >= 1 },
   ];
-  pairs.forEach(([id, errId]) => {
+  textPairs.forEach(({ id, errId, check }) => {
     const el = document.getElementById(id);
     if (!el) return;
-    el.addEventListener('input',  () => { if (el.value.trim()) clearError(id, errId); });
-    el.addEventListener('change', () => { if (el.value.trim()) clearError(id, errId); });
+    const validate = () => {
+      if (check(el.value)) setValid(id, errId);
+      else clearError(id, errId);
+    };
+    el.addEventListener('input',  validate);
+    el.addEventListener('change', validate);
   });
+
+  /* Phone — only validate on blur, not while typing (#17) */
+  const phone = document.getElementById('conf-phone');
+  if (phone) {
+    phone.addEventListener('blur', () => {
+      if (isValidKenyanPhone(phone.value)) setValid('conf-phone', 'err-conf-phone');
+      else if (phone.value.trim()) showError('conf-phone', 'err-conf-phone');
+    });
+    phone.addEventListener('input', () => {
+      if (isValidKenyanPhone(phone.value)) setValid('conf-phone', 'err-conf-phone');
+      else phone.classList.remove('valid');
+    });
+  }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -320,7 +360,6 @@ async function handleCommitteeSubmit(e) {
   if (honeypot && honeypot.value.trim()) return;
 
   if (!validateCommitteeForm(form)) {
-    showCommitteeError('Please fill in all required fields correctly.');
     const firstError = form.querySelector('.form-control.error');
     if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
@@ -347,19 +386,35 @@ async function handleCommitteeSubmit(e) {
 }
 
 function initCommitteeLiveValidation(form) {
-  const pairs = [
-    ['committee-full-name',   'err-committee-full-name'],
-    ['committee-phone',       'err-committee-phone'],
-    ['committee-gender',      'err-committee-gender'],
-    ['committee-region',      'err-committee-region'],
-    ['committee-department',  'err-committee-department'],
+  const textPairs = [
+    { id: 'committee-full-name',  errId: 'err-committee-full-name',  check: v => v.trim().length >= 2 },
+    { id: 'committee-gender',     errId: 'err-committee-gender',     check: v => v !== '' },
+    { id: 'committee-region',     errId: 'err-committee-region',     check: v => v !== '' },
+    { id: 'committee-department', errId: 'err-committee-department', check: v => v !== '' },
   ];
-  pairs.forEach(([id, errId]) => {
+  textPairs.forEach(({ id, errId, check }) => {
     const el = document.getElementById(id);
     if (!el) return;
-    el.addEventListener('input',  () => { if (el.value.trim()) clearError(id, errId); });
-    el.addEventListener('change', () => { if (el.value.trim()) clearError(id, errId); });
+    const validate = () => {
+      if (check(el.value)) setValid(id, errId);
+      else clearError(id, errId);
+    };
+    el.addEventListener('input',  validate);
+    el.addEventListener('change', validate);
   });
+
+  /* Phone — blur-first (#17) */
+  const phone = document.getElementById('committee-phone');
+  if (phone) {
+    phone.addEventListener('blur', () => {
+      if (isValidKenyanPhone(phone.value)) setValid('committee-phone', 'err-committee-phone');
+      else if (phone.value.trim()) showError('committee-phone', 'err-committee-phone');
+    });
+    phone.addEventListener('input', () => {
+      if (isValidKenyanPhone(phone.value)) setValid('committee-phone', 'err-committee-phone');
+      else phone.classList.remove('valid');
+    });
+  }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -369,11 +424,11 @@ function initCommitteeLiveValidation(form) {
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Open buttons ── */
-  document.getElementById('open-conf-modal')
-    ?.addEventListener('click', () => openModal('conf-modal'));
+  const openConfBtn = document.getElementById('open-conf-modal');
+  openConfBtn?.addEventListener('click', () => openModal('conf-modal', openConfBtn));
 
-  document.getElementById('open-committee-modal')
-    ?.addEventListener('click', () => openModal('committee-modal'));
+  const openCommitteeBtn = document.getElementById('open-committee-modal');
+  openCommitteeBtn?.addEventListener('click', () => openModal('committee-modal', openCommitteeBtn));
 
   /* ── Close buttons ── */
   document.getElementById('close-conf-modal')

@@ -374,7 +374,7 @@
 /* ── Panel shell ── */
 .modal-success {
   text-align: center;
-  padding: var(--space-lg) var(--space-md);
+  padding: var(--space-md) var(--space-md);
   animation: successFadeIn 0.3s ease both;
 }
 
@@ -501,9 +501,9 @@
 }
 
 .success-badge--green {
-  background: rgba(46, 125, 50, 0.1);
-  color: var(--success-text);
-  border: 1px solid rgba(46, 125, 50, 0.2);
+  background: rgba(46, 125, 50, 0.12);
+  color: #1b5e20;
+  border: 1px solid rgba(46, 125, 50, 0.3);
 }
 
 .success-badge--red {
@@ -535,7 +535,7 @@
   font-size: var(--fs-base);
   color: var(--gray-text);
   margin-bottom: var(--space-xs);
-  max-width: 400px;
+  max-width: 260px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -567,10 +567,11 @@
   background: none;
   border: none;
   color: var(--gray-text);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   font-weight: 500;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 1.5rem;
+  min-height: 44px;
   border-radius: var(--radius);
   transition: color var(--transition);
   font-family: var(--font-body);

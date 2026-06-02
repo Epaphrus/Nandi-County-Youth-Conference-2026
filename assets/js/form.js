@@ -6,8 +6,8 @@
 
 /* ── Google Sheets endpoints ───────────────────────────────── */
 // Replace these with your deployed Apps Script web app URLs.
-const CONF_ENDPOINT      = 'https://script.google.com/macros/s/YOUR_CONF_SCRIPT_ID/exec';
-const COMMITTEE_ENDPOINT = 'https://script.google.com/macros/s/YOUR_COMMITTEE_SCRIPT_ID/exec';
+const CONF_ENDPOINT      = 'https://script.google.com/macros/s/AKfycbyY5FILGJCI659YKtecXKsAIB6iaQQoP3VuN6RG9iR5RN_H1k1MAA5D5gAP81fx5TUSlA/exec';
+const COMMITTEE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyY5FILGJCI659YKtecXKsAIB6iaQQoP3VuN6RG9iR5RN_H1k1MAA5D5gAP81fx5TUSlA/exec';
 
 /* ── Sanitize input (prevent XSS) ─────────────────────────── */
 function sanitize(str) {

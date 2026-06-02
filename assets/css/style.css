@@ -6,16 +6,16 @@
 /* ── CSS Variables ─────────────────────────────────────────── */
 :root {
   /* Brand Colors */
-  --blue:       #0000FF;
-  --blue-light: #3333FF;
-  --blue-dark:  #0000CC;
+  --blue:       #0f268c;
+  --blue-light: #1a35b0;
+  --blue-dark:  #091d6e;
   --red:        #FF0000;
   --red-hover:  #CC0000;
   --white:      #FFFFFF;
   --black:      #111111;
-  --gray:       #EEF2FF;
-  --gray-mid:   #C8C8FF;
-  --gray-text:  #00008B;
+  --gray:       #eef1fa;
+  --gray-mid:   #b8c2e8;
+  --gray-text:  #1a2a6e;
 
   /* Semantic / UI Colors */
   --success:        #2e7d32;

@@ -53,7 +53,7 @@ function buildDayPanels() {
 
       <div class="timeline" role="list" aria-label="Sessions for ${day.day}">
         ${day.sessions.map((s, si) => `
-          <div class="timeline-item" role="listitem">
+          <div class="timeline-item timeline-item--${s.type}" role="listitem" data-type="${s.type}">
             <div class="timeline-time">
               <span>${s.time}</span>
             </div>

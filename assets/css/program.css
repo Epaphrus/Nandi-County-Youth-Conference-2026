@@ -286,3 +286,35 @@
     padding: 0.5rem 0.65rem;
   }
 }
+
+/* ── Session type variants ──────────────────────────────────── */
+.timeline-item--break {
+  opacity: 0.5;
+}
+
+.timeline-item--break .timeline-card {
+  background: transparent;
+  box-shadow: none;
+  border: 1px dashed var(--gray-mid);
+}
+
+.timeline-item--break .timeline-dot {
+  background: var(--gray-mid);
+  width: 10px;
+  height: 10px;
+}
+
+.timeline-item--special .timeline-card {
+  border-left: 3px solid var(--blue);
+  background: rgba(15, 38, 140, 0.04);
+}
+
+.timeline-item--special .timeline-dot {
+  background: var(--blue);
+  box-shadow: 0 0 0 3px rgba(15, 38, 140, 0.15);
+}
+
+.timeline-item--special h4 {
+  color: var(--blue);
+  font-weight: 700;
+}

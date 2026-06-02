@@ -308,11 +308,7 @@
 }
 
 .hero--photo .hero-year {
-  color: var(--red);
-}
-
-.hero--photo .hero-title-divider {
-  background: var(--red);
+  color: var(--white);
 }
 
 .hero--photo .hero-theme {
@@ -394,17 +390,20 @@
 }
 
 .hero-year {
-  color: var(--red);
+  color: inherit;
   display: inline-block;
+  position: relative;
 }
 
-/* Delicate red rule */
-.hero-title-divider {
-  width: 40px;
-  height: 2px;
+.hero-year::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 3px;
   background: var(--red);
   border-radius: 2px;
-  margin: var(--space-sm) 0;
 }
 
 .hero-theme {

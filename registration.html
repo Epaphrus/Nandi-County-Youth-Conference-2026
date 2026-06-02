@@ -161,25 +161,31 @@
             </legend>
 
             <div class="form-group">
-              <label for="conf-full-name">Full Name <span class="required" aria-hidden="true">*</span></label>
-              <input type="text" id="conf-full-name" name="fullName" class="form-control" placeholder="e.g. Derrick Kiprotich" required autocomplete="name" aria-required="true" />
+              <div class="fl-wrap">
+                <input type="text" id="conf-full-name" name="fullName" class="form-control" placeholder=" " required autocomplete="name" aria-required="true" />
+                <label for="conf-full-name">Full Name <span class="required" aria-hidden="true">*</span></label>
+              </div>
               <span class="form-error" id="err-conf-full-name" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Enter your first and last name.</span>
             </div>
 
             <div class="form-row form-row-2">
               <div class="form-group">
-                <label for="conf-phone">Phone Number <span class="required" aria-hidden="true">*</span></label>
-                <input type="tel" id="conf-phone" name="phone" class="form-control" placeholder="e.g. 07XX XXX XXX" required autocomplete="tel" aria-required="true" inputmode="tel" />
+                <div class="fl-wrap">
+                  <input type="tel" id="conf-phone" name="phone" class="form-control" placeholder=" " required autocomplete="tel" aria-required="true" inputmode="tel" />
+                  <label for="conf-phone">Phone Number <span class="required" aria-hidden="true">*</span></label>
+                </div>
                 <span class="form-error" id="err-conf-phone" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Use format 07XX XXX XXX or +2547XX XXX XXX.</span>
               </div>
 
               <div class="form-group">
-                <label for="conf-gender">Gender <span class="required" aria-hidden="true">*</span></label>
-                <select id="conf-gender" name="gender" class="form-control" required aria-required="true">
-                  <option value="">Select gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
+                <div class="fl-wrap">
+                  <select id="conf-gender" name="gender" class="form-control" required aria-required="true">
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                  <label for="conf-gender">Gender <span class="required" aria-hidden="true">*</span></label>
+                </div>
                 <span class="form-error" id="err-conf-gender" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Select Male or Female to continue.</span>
               </div>
             </div>
@@ -194,28 +200,32 @@
 
             <div class="form-row form-row-2">
               <div class="form-group">
-                <label for="conf-region">Region <span class="required" aria-hidden="true">*</span></label>
-                <select id="conf-region" name="region" class="form-control" required aria-required="true">
-                  <option value="">Select region</option>
-                  <option>Kapsabet</option>
-                  <option>Nandi South</option>
-                  <option>Nandi Hills</option>
-                  <option>Nandi North</option>
-                  <option>Mosoriot</option>
-                  <option>Kapkangani</option>
-                  <option>Aldai</option>
-                  <option>Kaiboi</option>
-                  <option>Lessos</option>
-                  <option>Tindiret</option>
-                  <option>Songhor</option>
-                  <option>Baraton</option>
-                </select>
+                <div class="fl-wrap">
+                  <select id="conf-region" name="region" class="form-control" required aria-required="true">
+                    <option value="">Select region</option>
+                    <option>Kapsabet</option>
+                    <option>Nandi South</option>
+                    <option>Nandi Hills</option>
+                    <option>Nandi North</option>
+                    <option>Mosoriot</option>
+                    <option>Kapkangani</option>
+                    <option>Aldai</option>
+                    <option>Kaiboi</option>
+                    <option>Lessos</option>
+                    <option>Tindiret</option>
+                    <option>Songhor</option>
+                    <option>Baraton</option>
+                  </select>
+                  <label for="conf-region">Region <span class="required" aria-hidden="true">*</span></label>
+                </div>
                 <span class="form-error" id="err-conf-region" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Choose the region you are coming from.</span>
               </div>
 
               <div class="form-group">
-                <label for="conf-church">Church / Altar <span class="required" aria-hidden="true">*</span></label>
-                <input type="text" id="conf-church" name="church" class="form-control" placeholder="e.g. Kapsabet Central Assembly" required aria-required="true" />
+                <div class="fl-wrap">
+                  <input type="text" id="conf-church" name="church" class="form-control" placeholder=" " required aria-required="true" />
+                  <label for="conf-church">Church / Altar <span class="required" aria-hidden="true">*</span></label>
+                </div>
                 <span class="form-error" id="err-conf-church" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Enter the name of your church or altar.</span>
               </div>
             </div>
@@ -229,13 +239,17 @@
             </legend>
 
             <div class="form-group">
-              <label for="conf-allergies">Allergies <span class="optional">(optional)</span></label>
-              <input type="text" id="conf-allergies" name="allergies" class="form-control" placeholder="e.g. Peanuts, Penicillin — or leave blank if none" />
+              <div class="fl-wrap">
+                <input type="text" id="conf-allergies" name="allergies" class="form-control" placeholder=" " />
+                <label for="conf-allergies">Allergies <span class="optional">(optional)</span></label>
+              </div>
             </div>
 
             <div class="form-group">
-              <label for="conf-diet">Special Dietary Requirements <span class="optional">(optional)</span></label>
-              <input type="text" id="conf-diet" name="specialDiet" class="form-control" placeholder="e.g. Vegetarian, Gluten-free — or leave blank if none" />
+              <div class="fl-wrap">
+                <input type="text" id="conf-diet" name="specialDiet" class="form-control" placeholder=" " />
+                <label for="conf-diet">Special Dietary Requirements <span class="optional">(optional)</span></label>
+              </div>
             </div>
           </fieldset>
 
@@ -317,25 +331,31 @@
             </legend>
 
             <div class="form-group">
-              <label for="committee-full-name">Full Name <span class="required" aria-hidden="true">*</span></label>
-              <input type="text" id="committee-full-name" name="fullName" class="form-control" placeholder="e.g. Sharon Chebet" required autocomplete="name" aria-required="true" />
+              <div class="fl-wrap">
+                <input type="text" id="committee-full-name" name="fullName" class="form-control" placeholder=" " required autocomplete="name" aria-required="true" />
+                <label for="committee-full-name">Full Name <span class="required" aria-hidden="true">*</span></label>
+              </div>
               <span class="form-error" id="err-committee-full-name" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Enter your first and last name.</span>
             </div>
 
             <div class="form-row form-row-2">
               <div class="form-group">
-                <label for="committee-phone">Phone Number <span class="required" aria-hidden="true">*</span></label>
-                <input type="tel" id="committee-phone" name="phone" class="form-control" placeholder="e.g. 07XX XXX XXX" required autocomplete="tel" aria-required="true" inputmode="tel" />
+                <div class="fl-wrap">
+                  <input type="tel" id="committee-phone" name="phone" class="form-control" placeholder=" " required autocomplete="tel" aria-required="true" inputmode="tel" />
+                  <label for="committee-phone">Phone Number <span class="required" aria-hidden="true">*</span></label>
+                </div>
                 <span class="form-error" id="err-committee-phone" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Use format 07XX XXX XXX or +2547XX XXX XXX.</span>
               </div>
 
               <div class="form-group">
-                <label for="committee-gender">Gender <span class="required" aria-hidden="true">*</span></label>
-                <select id="committee-gender" name="gender" class="form-control" required aria-required="true">
-                  <option value="">Select gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
+                <div class="fl-wrap">
+                  <select id="committee-gender" name="gender" class="form-control" required aria-required="true">
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                  <label for="committee-gender">Gender <span class="required" aria-hidden="true">*</span></label>
+                </div>
                 <span class="form-error" id="err-committee-gender" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Select Male or Female to continue.</span>
               </div>
             </div>
@@ -349,47 +369,51 @@
             </legend>
 
             <div class="form-group">
-              <label for="committee-region">Region <span class="required" aria-hidden="true">*</span></label>
-              <select id="committee-region" name="region" class="form-control" required aria-required="true">
-                <option value="">Select your region</option>
-                <option>Kapsabet</option>
-                <option>Nandi South</option>
-                <option>Nandi Hills</option>
-                <option>Nandi North</option>
-                <option>Mosoriot</option>
-                <option>Kapkangani</option>
-                <option>Aldai</option>
-                <option>Kaiboi</option>
-                <option>Lessos</option>
-                <option>Tindiret</option>
-                <option>Songhor</option>
-                <option>Baraton</option>
-              </select>
+              <div class="fl-wrap">
+                <select id="committee-region" name="region" class="form-control" required aria-required="true">
+                  <option value="">Select your region</option>
+                  <option>Kapsabet</option>
+                  <option>Nandi South</option>
+                  <option>Nandi Hills</option>
+                  <option>Nandi North</option>
+                  <option>Mosoriot</option>
+                  <option>Kapkangani</option>
+                  <option>Aldai</option>
+                  <option>Kaiboi</option>
+                  <option>Lessos</option>
+                  <option>Tindiret</option>
+                  <option>Songhor</option>
+                  <option>Baraton</option>
+                </select>
+                <label for="committee-region">Region <span class="required" aria-hidden="true">*</span></label>
+              </div>
               <span class="form-error" id="err-committee-region" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Choose the region you are coming from.</span>
             </div>
 
             <div class="form-group">
-              <label for="committee-department">Department / Committee <span class="required" aria-hidden="true">*</span></label>
-              <select id="committee-department" name="department" class="form-control" required aria-required="true">
-                <option value="">Select a committee</option>
-                <option>Intercession Committee</option>
-                <option>Mobilization &amp; Publicity Committee</option>
-                <option>Finance &amp; Budget Committee</option>
-                <option>Hospitality &amp; Accommodation Committee</option>
-                <option>Media &amp; Documentation Committee</option>
-                <option>Worship &amp; Technical Committee</option>
-                <option>Security Committee</option>
-                <option>Program &amp; Protocol Committee</option>
-                <option>Translation Committee</option>
-                <option>Registration Desk / Statistics Committee</option>
-                <option>Logistics &amp; Venue Committee</option>
-                <option>Catering &amp; Welfare Committee</option>
-                <option>Correspondence Committee</option>
-                <option>Ushering Committee</option>
-                <option>Sanitation Committee</option>
-                <option>Medical Committee</option>
-                <option>Decoration Committee</option>
-              </select>
+              <div class="fl-wrap">
+                <select id="committee-department" name="department" class="form-control" required aria-required="true">
+                  <option value="">Select a committee</option>
+                  <option>Intercession Committee</option>
+                  <option>Mobilization &amp; Publicity Committee</option>
+                  <option>Finance &amp; Budget Committee</option>
+                  <option>Hospitality &amp; Accommodation Committee</option>
+                  <option>Media &amp; Documentation Committee</option>
+                  <option>Worship &amp; Technical Committee</option>
+                  <option>Security Committee</option>
+                  <option>Program &amp; Protocol Committee</option>
+                  <option>Translation Committee</option>
+                  <option>Registration Desk / Statistics Committee</option>
+                  <option>Logistics &amp; Venue Committee</option>
+                  <option>Catering &amp; Welfare Committee</option>
+                  <option>Correspondence Committee</option>
+                  <option>Ushering Committee</option>
+                  <option>Sanitation Committee</option>
+                  <option>Medical Committee</option>
+                  <option>Decoration Committee</option>
+                </select>
+                <label for="committee-department">Department / Committee <span class="required" aria-hidden="true">*</span></label>
+              </div>
               <span class="form-error" id="err-committee-department" role="alert"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> Choose the committee you would like to serve on.</span>
             </div>
           </fieldset>

@@ -246,6 +246,19 @@ function setValid(fieldId, errId) {
   if (err)   err.classList.remove('visible');
 }
 
+/* ── Floating label: sync has-value class ──────────────────── */
+function syncHasValue(el) {
+  el.classList.toggle('has-value', el.value !== '');
+}
+
+function initFloatingLabels(form) {
+  form.querySelectorAll('.fl-wrap .form-control').forEach(el => {
+    syncHasValue(el);
+    el.addEventListener('input',  () => syncHasValue(el));
+    el.addEventListener('change', () => syncHasValue(el));
+  });
+}
+
 function initConfLiveValidation(form) {
   /* Text / select fields — validate on input and clear error only when valid */
   const textPairs = [
@@ -466,4 +479,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const committeeForm = document.getElementById('committee-form');
   if (confForm)      initConfLiveValidation(confForm);
   if (committeeForm) initCommitteeLiveValidation(committeeForm);
+
+  /* ── Floating labels ── */
+  if (confForm)      initFloatingLabels(confForm);
+  if (committeeForm) initFloatingLabels(committeeForm);
 });

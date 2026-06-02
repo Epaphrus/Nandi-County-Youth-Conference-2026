@@ -173,33 +173,6 @@
   color: var(--gray-text);
 }
 
-/* ── SCRIPTURE BANNER ──────────────────────────────────────── */
-.reg-scripture-banner {
-  background: var(--blue);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  text-align: center;
-}
-
-.reg-scripture-banner blockquote {
-  font-style: italic;
-  color: rgba(255,255,255,0.92);
-  font-size: var(--fs-md);
-  line-height: 1.8;
-  border: none;
-  padding: 0;
-  margin: 0 0 0.5rem;
-}
-
-.reg-scripture-banner cite {
-  color: rgba(255,255,255,0.6);
-  font-size: var(--fs-sm);
-}
-
-.text-caps {
-  font-variant: small-caps;
-  letter-spacing: 0.05em;
-}
 
 /* ── MODAL OVERLAY ─────────────────────────────────────────── */
 .modal-overlay {
@@ -243,13 +216,14 @@
   border-radius: var(--radius-lg);
   width: 100%;
   max-width: 640px;
+  max-height: 90dvh;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-lg);
   transform: translateY(24px) scale(0.98);
   transition: transform 0.25s ease;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   z-index: 2001;
 }
@@ -317,8 +291,10 @@
 /* ── MODAL BODY ────────────────────────────────────────────── */
 .modal-body {
   overflow-y: auto;
+  overflow-x: hidden;
   padding: var(--space-md);
   flex: 1;
+  min-height: 0;
 }
 
 /* ── MODAL FORM ────────────────────────────────────────────── */

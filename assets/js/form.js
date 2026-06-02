@@ -56,14 +56,16 @@ async function submitToSheets(endpoint, data) {
    MODAL MANAGEMENT
 ══════════════════════════════════════════════════════════════ */
 
-const backdrop = document.getElementById('modal-backdrop');
+function getBackdrop() {
+  return document.getElementById('modal-backdrop');
+}
 
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
   if (!modal) return;
   modal.setAttribute('aria-hidden', 'false');
   modal.classList.add('is-open');
-  backdrop.classList.add('is-open');
+  getBackdrop()?.classList.add('is-open');
   document.body.style.overflow = 'hidden';
 
   // Focus the first focusable element inside the modal
@@ -76,7 +78,7 @@ function closeModal(modalId) {
   if (!modal) return;
   modal.setAttribute('aria-hidden', 'true');
   modal.classList.remove('is-open');
-  backdrop.classList.remove('is-open');
+  getBackdrop()?.classList.remove('is-open');
   document.body.style.overflow = '';
 }
 
@@ -85,7 +87,7 @@ function closeAllModals() {
     m.setAttribute('aria-hidden', 'true');
     m.classList.remove('is-open');
   });
-  backdrop.classList.remove('is-open');
+  getBackdrop()?.classList.remove('is-open');
   document.body.style.overflow = '';
 }
 
@@ -382,9 +384,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Keyboard: Escape + focus trap ── */
   document.addEventListener('keydown', e => {
-    const openModal = document.querySelector('.modal-overlay.is-open');
-    if (!openModal) return;
-    trapFocus(openModal, e);
+    const activeModal = document.querySelector('.modal-overlay.is-open');
+    if (!activeModal) return;
+    trapFocus(activeModal, e);
   });
 
   /* ── Form submission ── */

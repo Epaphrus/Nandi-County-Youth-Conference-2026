@@ -67,8 +67,6 @@
 .day-panel.active {
   display: block;
   animation: fadeSlideIn 0.35s ease;
-  border-top: 3px solid var(--blue);
-  padding-top: var(--space-lg);
 }
 
 @keyframes fadeSlideIn {

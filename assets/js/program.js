@@ -20,6 +20,8 @@ function buildTabs() {
     const datePart = day.date.split(',').slice(1).join(',').trim()
       .replace(/\s+\d{4}$/, ''); // strip year → "10 August"
 
+    btn.setAttribute('data-aos', 'fade-up');
+    btn.setAttribute('data-aos-delay', String(i * 80));
     btn.innerHTML = `
       <span class="tab-day">${day.day}</span>
       <span class="tab-date">${datePart}</span>
@@ -53,7 +55,7 @@ function buildDayPanels() {
 
       <div class="timeline" role="list" aria-label="Sessions for ${day.day}">
         ${day.sessions.map((s, si) => `
-          <div class="timeline-item timeline-item--${s.type}" role="listitem" data-type="${s.type}">
+          <div class="timeline-item timeline-item--${s.type}" role="listitem" data-type="${s.type}" data-aos="fade-up" data-aos-delay="${si * 60}">
             <div class="timeline-time">
               <span>${s.time}</span>
             </div>
@@ -87,6 +89,9 @@ function showDay(index) {
     panel.classList.toggle('active', i === index);
   });
 
+  // Re-run AOS on newly visible panel items
+  if (typeof AOS !== 'undefined') AOS.refresh();
+
   // On mobile, scroll the content panel into view
   const panel = document.getElementById(`day-panel-${index}`);
   if (panel && window.innerWidth < 768) {
@@ -118,4 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
   buildTabs();
   buildDayPanels();
   initTabKeyboard();
+  // Refresh AOS after dynamic content is injected
+  if (typeof AOS !== 'undefined') AOS.refresh();
 });

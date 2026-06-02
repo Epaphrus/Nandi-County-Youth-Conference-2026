@@ -126,16 +126,30 @@
 
         <!-- Success panel -->
         <div id="conf-success" class="modal-success" role="alert" aria-live="polite" style="display:none;">
-          <div class="modal-success-icon"><i class="fas fa-check-circle" aria-hidden="true"></i></div>
-          <h3>Registration Successful!</h3>
-          <p>Thank you for registering for NCYC 2026. We look forward to seeing you in Kapsabet on <strong>10 August 2026</strong>.</p>
-          <p class="modal-success-verse"><em>Prepare your heart. Come ready to encounter God.</em></p>
-          <div class="modal-success-actions">
-            <a href="https://wa.me/254700000000?text=I%20just%20registered%20for%20NCYC%202026!" class="btn btn-whatsapp" target="_blank" rel="noopener">
+          <!-- Icon + badge stacked in column -->
+          <div class="success-icon-col">
+            <div class="success-icon-wrap">
+              <div class="success-ring"></div>
+              <div class="success-confetti" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+              </div>
+              <div class="modal-success-icon">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="success-badge success-badge--green">
+              <i class="fas fa-check" aria-hidden="true"></i> Registered
+            </div>
+          </div>
+          <h3 class="success-reveal success-reveal-1">Registration Successful!</h3>
+          <p class="success-reveal success-reveal-2">Thank you for registering for NCYC 2026. We look forward to seeing you in Kapsabet on <strong>10 August 2026</strong>.</p>
+          <div class="modal-success-actions success-reveal success-reveal-3">
+            <a href="https://wa.me/254700000000?text=I%20just%20registered%20for%20NCYC%202026!" class="btn btn-whatsapp btn-lg modal-submit-btn" target="_blank" rel="noopener">
               <i class="fab fa-whatsapp" aria-hidden="true"></i> Join WhatsApp Group
             </a>
-            <button class="btn btn-outline" id="conf-success-close">
-              <i class="fas fa-times" aria-hidden="true"></i> Close
+            <button class="success-close-link" id="conf-success-close">
+              Done
             </button>
           </div>
         </div>
@@ -296,16 +310,30 @@
 
         <!-- Success panel -->
         <div id="committee-success" class="modal-success" role="alert" aria-live="polite" style="display:none;">
-          <div class="modal-success-icon modal-success-icon--red"><i class="fas fa-check-circle" aria-hidden="true"></i></div>
-          <h3>Thank You for Volunteering!</h3>
-          <p>Your committee registration has been received. The coordination team will be in touch with further instructions.</p>
-          <p class="modal-success-verse"><em>"For we are co-workers in God's service." — 1 Corinthians 3:9</em></p>
-          <div class="modal-success-actions">
-            <a href="https://wa.me/254700000000?text=Hallelujah%2C%20I%20have%20registered%20to%20serve%20on%20a%20committee%20at%20NCYC%202026.%20Please%20send%20me%20further%20instructions." class="btn btn-whatsapp" target="_blank" rel="noopener">
+          <!-- Icon + badge stacked in column -->
+          <div class="success-icon-col">
+            <div class="success-icon-wrap">
+              <div class="success-ring success-ring--red"></div>
+              <div class="success-confetti success-confetti--red" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+              </div>
+              <div class="modal-success-icon modal-success-icon--red">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="success-badge success-badge--red">
+              <i class="fas fa-check" aria-hidden="true"></i> Application Received
+            </div>
+          </div>
+          <h3 class="success-reveal success-reveal-1">Thank You for Volunteering!</h3>
+          <p class="success-reveal success-reveal-2">Your committee registration has been received. The coordination team will be in touch with further instructions.</p>
+          <div class="modal-success-actions success-reveal success-reveal-3">
+            <a href="https://wa.me/254700000000?text=Hallelujah%2C%20I%20have%20registered%20to%20serve%20on%20a%20committee%20at%20NCYC%202026.%20Please%20send%20me%20further%20instructions." class="btn btn-whatsapp btn-lg modal-submit-btn" target="_blank" rel="noopener">
               <i class="fab fa-whatsapp" aria-hidden="true"></i> Join WhatsApp Group
             </a>
-            <button class="btn btn-outline" id="committee-success-close">
-              <i class="fas fa-times" aria-hidden="true"></i> Close
+            <button class="success-close-link" id="committee-success-close">
+              Done
             </button>
           </div>
         </div>

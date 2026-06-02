@@ -29,7 +29,7 @@ const SPEAKERS = [
     name: "Dab John Kosgei",
     role: "Host Bishop",
     bio: "Passionate about discipleship and mobilizing the youth of Nandi County for revival.",
-    image: null,
+    image: "assets/images/speakers/DAB John Kosgei.jpeg",
     featured: false,
   },
   {

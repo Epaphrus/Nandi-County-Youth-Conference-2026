@@ -273,6 +273,20 @@ main {
   color: var(--white);
 }
 
+.btn-red {
+  background: var(--red);
+  color: var(--white);
+  border: 2px solid var(--red);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.btn-red:hover,
+.btn-red:focus-visible {
+  background: var(--red-hover);
+  border-color: var(--red-hover);
+  color: var(--white);
+}
+
 .btn-whatsapp {
   background: var(--whatsapp);
   color: var(--white);

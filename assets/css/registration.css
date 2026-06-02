@@ -109,22 +109,6 @@
   color: var(--white);
 }
 
-/* Red solid button variant */
-.btn-red {
-  background: var(--red);
-  color: var(--white);
-  border: 2px solid var(--red);
-  transition:
-    background var(--transition),
-    border-color var(--transition);
-}
-
-.btn-red:hover,
-.btn-red:focus-visible {
-  background: var(--red-hover);
-  border-color: var(--red-hover);
-  color: var(--white);
-}
 
 /* ── INFO STRIP ────────────────────────────────────────────── */
 .reg-info-strip {
@@ -247,10 +231,11 @@
   justify-content: space-between;
   gap: var(--space-sm);
   padding: var(--space-md) var(--space-md) var(--space-sm);
-  border-bottom: 2px solid var(--gray);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
   background: var(--blue);
   color: var(--white);
   flex-shrink: 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .modal-header--red {
@@ -328,9 +313,15 @@
 }
 
 /* ── MODAL SUCCESS ─────────────────────────────────────────── */
+@keyframes successFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .modal-success {
   text-align: center;
   padding: var(--space-lg) var(--space-sm);
+  animation: successFadeIn 0.35s ease forwards;
 }
 
 .modal-success-icon {
@@ -407,7 +398,7 @@
 }
 
 .form-legend--red i {
-  color: var(--blue);
+  color: var(--red);
 }
 
 .legend-optional {

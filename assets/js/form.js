@@ -109,6 +109,12 @@ function trapFocus(modal, e) {
 }
 
 /* ══════════════════════════════════════════════════════════════
+   SUBMISSION STATE FLAGS
+══════════════════════════════════════════════════════════════ */
+let confSubmitted      = false;
+let committeeSubmitted = false;
+
+/* ══════════════════════════════════════════════════════════════
    CONFERENCE REGISTRATION FORM
 ══════════════════════════════════════════════════════════════ */
 
@@ -183,6 +189,7 @@ function hideConfError() {
 
 async function handleConfSubmit(e) {
   e.preventDefault();
+  if (confSubmitted) return;
   hideConfError();
 
   const form     = document.getElementById('conf-form');
@@ -205,6 +212,7 @@ async function handleConfSubmit(e) {
     } else {
       await submitToSheets(CONF_ENDPOINT, data);
     }
+    confSubmitted = true;
     form.style.display = 'none';
     document.getElementById('conf-success').style.display = 'block';
   } catch (err) {
@@ -304,6 +312,7 @@ function hideCommitteeError() {
 
 async function handleCommitteeSubmit(e) {
   e.preventDefault();
+  if (committeeSubmitted) return;
   hideCommitteeError();
 
   const form     = document.getElementById('committee-form');
@@ -326,6 +335,7 @@ async function handleCommitteeSubmit(e) {
     } else {
       await submitToSheets(COMMITTEE_ENDPOINT, data);
     }
+    committeeSubmitted = true;
     form.style.display = 'none';
     document.getElementById('committee-success').style.display = 'block';
   } catch (err) {

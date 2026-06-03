@@ -10,7 +10,7 @@ const SPEAKERS = [
   },
   {
     id: 2,
-    name: "Dab Mama Lumala",
+    name: "Bishop Mama Lumala",
     role: "Guest Speaker",
     bio: "Anointed minister carrying a message of repentance, holiness, and consecration to the next generation.",
     image: "assets/images/speakers/Bishop Linet Lumala002.jpeg",

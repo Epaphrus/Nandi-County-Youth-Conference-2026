@@ -141,6 +141,11 @@
   flex-shrink: 0;
 }
 
+/* In-menu Register button — hidden on desktop, shown inside full-screen overlay */
+.navbar-menu-cta {
+  display: none;
+}
+
 /* Hamburger */
 .navbar-toggle {
   display: none;
@@ -173,78 +178,100 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile Nav */
+/* Mobile Nav — full-screen overlay */
 @media (max-width: 900px) {
   .navbar-menu {
     position: fixed;
-    top: 0;
-    right: -100%;
-    width: min(300px, 82vw);
-    height: 100vh;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     background: var(--white);
-    border-left: 1px solid rgba(0, 0, 0, 0.08);
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     gap: 0;
-    padding: 4.5rem var(--space-lg) 5rem;
-    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    /* Fade + slight scale for a polished entrance */
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.97);
+    transition: opacity 0.25s ease, transform 0.25s ease;
     overflow-y: auto;
+    /* Sits above the navbar bar so it truly covers full screen */
+    z-index: 1000;
   }
 
   .navbar-menu.open {
-    right: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
   }
 
-  /* Suppress underline animation in drawer — use left border instead */
+  /* Suppress underline animation — use left border indicator instead */
   .navbar-menu a::after {
     display: none;
   }
 
+  .navbar-menu li {
+    width: 100%;
+    max-width: 340px;
+  }
+
   .navbar-menu a {
     width: 100%;
-    padding: 0.85rem 1rem;
-    font-size: var(--fs-base);
-    color: rgba(0, 0, 0, 0.7);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 1rem 1.5rem;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.75);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
     border-radius: 0;
-    border-left: 3px solid transparent;
+    border-left: 4px solid transparent;
+    justify-content: flex-start;
     transition: color var(--transition), border-left-color var(--transition), background var(--transition);
   }
 
   .navbar-menu a:hover {
     color: var(--black);
-    background: rgba(0, 0, 0, 0.02);
-    border-left-color: rgba(255, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.03);
+    border-left-color: rgba(220, 38, 38, 0.35);
   }
 
   .navbar-menu a.active {
     color: var(--red);
     font-weight: 600;
     border-left-color: var(--red);
-    background: rgba(255, 0, 0, 0.03);
+    background: rgba(220, 38, 38, 0.06);
   }
 
-  /* Hide CTA from the top bar; show it anchored to the bottom of the drawer */
+  /* Hide the desktop top-bar CTA on mobile */
   .navbar-cta {
-    position: fixed;
-    bottom: 0;
-    right: -100%;
-    width: min(300px, 82vw);
-    padding: var(--space-md) var(--space-lg);
-    background: var(--white);
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
-    z-index: 1000;
-    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: none;
   }
 
-  .navbar-menu.open~.navbar-cta {
-    right: 0;
+  /* Show the in-menu Register item at the bottom of the overlay list */
+  .navbar-menu-cta {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    padding: 1.5rem 0 2rem;
+    border-bottom: none !important;
   }
 
-  .navbar-cta .btn {
+  .navbar-menu-cta a.btn {
     width: 100%;
     justify-content: center;
+    border-left: none !important;
+    background: var(--red) !important;
+    color: var(--white) !important;
+    padding: 0.85rem 1.5rem !important;
+    border-radius: var(--radius) !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+  }
+
+  .navbar-menu-cta a.btn:hover {
+    background: #b91c1c !important;
+    border-left-color: transparent !important;
   }
 
   .navbar-toggle {

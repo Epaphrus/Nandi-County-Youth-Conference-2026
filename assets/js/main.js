@@ -122,12 +122,18 @@ function initSmoothScroll() {
   });
 }
 
+/* ── Page Loader ───────────────────────────────────────────── */
+function hideLoader() {
+  const loader = document.getElementById('page-loader');
+  if (!loader) return;
+  loader.classList.add('loader-hidden');
+  loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+}
+
 /* ── Bootstrap everything ──────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
   const root = getRootPath();
 
-  // Highlight the active link as soon as the navbar HTML is in the DOM,
-  // not after the footer also resolves — avoids a race on slow connections.
   document.getElementById('navbar-placeholder')
     .addEventListener('component:loaded', highlightActiveLink, { once: true });
 
@@ -140,4 +146,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   initScrollTop();
   initSmoothScroll();
   initAOS();
+
+  // Hide loader after components are ready; window.load catches slow images
+  if (document.readyState === 'complete') {
+    hideLoader();
+  } else {
+    window.addEventListener('load', hideLoader, { once: true });
+  }
 });

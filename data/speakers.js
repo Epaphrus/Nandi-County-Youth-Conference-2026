@@ -53,7 +53,7 @@ const SPEAKERS = [
     name: "Bishop Daniel Koech",
     role: "Guest Speaker",
     bio: "A servant of THE LORD called to preach the uncompromising Gospel of repentance and consecration.",
-    image: null,
+    image: "assets/images/speakers/Bishop Daniel.jpg",
     featured: false,
   },
   {

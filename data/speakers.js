@@ -21,7 +21,7 @@ const SPEAKERS = [
     name: "Snr Bishop Dr. Aaron",
     role: "Guest Speaker",
     bio: "Leading GOD's people into deep encounter through Spirit-filled worship and intercession.",
-    image: null,
+    image: "assets/images/speakers/Bishop Dr. Aaron Langat.webp",
     featured: false,
   },
   {
@@ -53,7 +53,7 @@ const SPEAKERS = [
     name: "Bishop Daniel Koech",
     role: "Guest Speaker",
     bio: "A servant of THE LORD called to preach the uncompromising Gospel of repentance and consecration.",
-    image: "assets/images/speakers/Bishop Daniel.jpg",
+    image: "assets/images/speakers/Bishop Daniel.webp",
     featured: false,
   },
   {

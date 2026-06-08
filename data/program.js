@@ -2,7 +2,7 @@
 const PROGRAM = [
   {
     day: "Day 1",
-    date: "Monday, 10 August 2026",
+    date: "Tuesday, 11 August 2026",
     theme: "Arrival & Opening Night",
     sessions: [
       { time: "2:00 PM – 5:30 PM", title: "Arrival, Registration", type: "logistics", speaker: "" },
@@ -14,7 +14,7 @@ const PROGRAM = [
   },
   {
     day: "Day 2",
-    date: "Tuesday, 11 August 2026",
+    date: "Wednesday, 12 August 2026",
     theme: "The Word & Worship",
     sessions: [
       { time: "6:00 AM – 7:00 AM", title: "Morning Prayer Session", type: "prayer", speaker: "" },
@@ -32,8 +32,8 @@ const PROGRAM = [
   },
   {
     day: "Day 3",
-    date: "Wednesday, 12 August 2026",
-    theme: "Open Air Crusade",
+    date: "Thursday, 13 August 2026",
+    theme: "The Word & Open Air Crusade",
     sessions: [
       { time: "6:00 AM – 7:00 AM", title: "Morning Prayer Session", type: "prayer", speaker: "" },
       { time: "7:00 AM – 8:00 AM", title: "Personal Cleaning", type: "break", speaker: "" },
@@ -49,21 +49,6 @@ const PROGRAM = [
   },
   {
     day: "Day 4",
-    date: "Thursday, 13 August 2026",
-    theme: "Worship Extravaganza",
-    sessions: [
-      { time: "6:00 AM – 7:00 AM", title: "Morning Prayer Session", type: "prayer", speaker: "" },
-      { time: "7:00 AM – 8:00 AM", title: "Personal Cleaning", type: "break", speaker: "" },
-      { time: "8:00 AM – 9:00 AM", title: "Breakfast", type: "break", speaker: "" },
-      { time: "9:00 AM – 10:30 AM", title: "Worship Service", type: "worship", speaker: "" },
-      { time: "10:30 AM – 12:30 PM", title: "Morning Word Session", type: "sermon", speaker: "" },
-      { time: "12:30 PM – 2:00 PM", title: "Lunch Break", type: "break", speaker: "" },
-      { time: "2:00 PM – 8:00 PM", title: "Worship Extravaganza", type: "special", speaker: "" },
-      { time: "8:00 PM – 9:00 PM", title: "Dinner Break", type: "break", speaker: "" },
-    ],
-  },
-  {
-    day: "Day 5",
     date: "Friday, 14 August 2026",
     theme: "Worship Extravaganza",
     sessions: [
@@ -78,7 +63,7 @@ const PROGRAM = [
     ],
   },
   {
-    day: "Day 6",
+    day: "Day 5",
     date: "Saturday, 15 August 2026",
     theme: "Water Baptism & Commissioning",
     sessions: [

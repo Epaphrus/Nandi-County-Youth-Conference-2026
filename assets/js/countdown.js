@@ -4,7 +4,7 @@
    ============================================================ */
 
 (function () {
-  const CONFERENCE_DATE = new Date('2026-08-10T08:00:00+03:00');
+  const CONFERENCE_DATE = new Date('2026-08-11T08:00:00+01:00');
 
   function pad(n) {
     return String(n).padStart(2, '0');

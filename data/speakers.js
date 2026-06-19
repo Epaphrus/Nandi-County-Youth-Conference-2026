@@ -10,7 +10,7 @@ const SPEAKERS = [
   },
   {
     id: 2,
-    name: "Bishop Mama Lumala",
+    name: "Bishop Linet Lumala",
     role: "Guest Speaker",
     bio: "Anointed minister carrying a message of repentance, holiness, and consecration to the next generation.",
     image: "assets/images/speakers/Bishop Linet Lumala002.jpeg",
@@ -61,7 +61,7 @@ const SPEAKERS = [
     name: "Bishop Wasike",
     role: "Guest Speaker",
     bio: "Minister of GOD carrying a burning message of holiness and preparation for the coming of THE LORD JESUS CHRIST.",
-    image: false,
+    image: "assets/images/speakers/Bishop Wasike.webp",
     featured: false,
   },
   {

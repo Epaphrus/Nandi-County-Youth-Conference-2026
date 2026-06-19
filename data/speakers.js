@@ -58,6 +58,14 @@ const SPEAKERS = [
   },
   {
     id: 8,
+    name: "Bishop Wasike",
+    role: "Guest Speaker",
+    bio: "Minister of GOD carrying a burning message of holiness and preparation for the coming of THE LORD JESUS CHRIST.",
+    image: false,
+    featured: false,
+  },
+  {
+    id: 9,
     name: "Bishop Elizabeth Goren",
     role: "Guest Speaker",
     bio: "Minister of GOD carrying a burning message of holiness and preparation for the coming of THE LORD JESUS CHRIST.",
